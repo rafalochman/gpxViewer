@@ -10,6 +10,12 @@ namespace gpxViewer.Controllers
     {
         public ActionResult Index()
         {
+            List<SelectListItem> maps = new List<SelectListItem>() {
+                new SelectListItem{Text="Bing Map", Value = "1"},
+                new SelectListItem{Text="Google Map", Value = "2"},
+                new SelectListItem{Text="Open Street Map", Value = "3"}
+            };
+            ViewBag.maps = maps;
             return View();
         }
 
