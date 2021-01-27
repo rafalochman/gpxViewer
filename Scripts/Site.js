@@ -111,3 +111,14 @@ function selectedMap(map) {
             break;
     }
 }
+
+function imputDisplay() {
+    document.querySelector("#chooseInput").onchange = function () {
+        document.querySelector("#fileNameLabel").textContent = this.files[0].name;
+        document.getElementById("tempData").style.display = 'none';
+    }
+}
+
+window.addEventListener('load', function () {
+    imputDisplay();
+})
