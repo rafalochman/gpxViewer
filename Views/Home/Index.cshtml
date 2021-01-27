@@ -22,24 +22,24 @@
     <div class="col-lg-4">
         <form method="post" enctype="multipart/form-data" asp-controller="Data" asp-action="ImportAdditionalCodes">
             <div id="uploadFileDiv" class="form-group">
-                <label id="chooseFile" for="chooseInput" class="btn btn-primary"> ChooseFile </label>
+                <label id="chooseFile" for="chooseInput" class="btn btn-primary">@gpxViewer.Resources.Resource.ChooseFile</label>
                 <input accept='.gpx' id="chooseInput" type="file" name="file" style="display: none">
                 <label class="bold" id="fileNameLabel"></label>
             </div>
             <div class="form-group">
-                <input class="btn btn-primary" type="submit" value=" Send">
+                <input class="btn btn-primary" type="submit" value="@gpxViewer.Resources.Resource.Send">
                 <div class="bold" id="tempData">@TempData["Message"]</div>
             </div>
         </form>
 
-        <p id="chooseMap" class="bold"> ChooseMap </p>
+        <p id="chooseMap" class="bold">@gpxViewer.Resources.Resource.ChooseMap</p>
         <p id="dropDownList">@Html.DropDownList("maps", null, new { onchange = "selectedMap(this.value)", @class = "form-control" })</p>
 
         <div id="jsPrint" class="form-group">
-            <p class="bold">  Name: <div class="inline" id="name"></div></p>
-            <p class="bold">  Distance: <div class="inline" id="distance"> </div></p>
-            <p class="bold">  Time: <div class="inline" id="time"></div></p>
-            <p class="bold">  Elevation: <div class="inline" id="elevation"></div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Name: <div class="inline" id="name"></div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline" id="distance"> </div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline" id="time"></div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline" id="elevation"></div></p>
         </div>
     </div>
 

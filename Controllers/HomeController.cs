@@ -31,16 +31,16 @@ namespace gpxViewer.Controllers
                     string fileName = Path.GetFileName(file.FileName);
                     string filePath = Path.Combine(Server.MapPath("~/UploadedFiles"), fileName);
                     file.SaveAs(filePath);
-                    TempData["Message"] = "Sent";
+                    TempData["Message"] = Resources.Resource.Sent;
                 }
                 catch (Exception e)
                 {
-                    TempData["Message"] = "Error";
+                    TempData["Message"] = Resources.Resource.Error;
                 }
             }
             else
             {
-                TempData["Message"] = "Error";
+                TempData["Message"] = Resources.Resource.Error;
             }
 
             List<SelectListItem> maps = new List<SelectListItem>() {
