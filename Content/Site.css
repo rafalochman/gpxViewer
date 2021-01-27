@@ -22,3 +22,51 @@ select,
 textarea {
     max-width: 280px;
 }
+
+th {
+    background-color: #18bc9c;
+    color: white;
+}
+
+#mainRow {
+    margin-top: 60px;
+}
+
+.bold {
+    font-weight: bold;
+    display: inline;
+}
+
+.inline {
+    all: unset;
+    display: inline;
+}
+
+#chartDiv {
+    margin-top: 20px;
+    width: 100%;
+    min-width: 750px;
+    min-width: 750px;
+    height: 182px;
+}
+
+#uploadFileDiv {
+    margin-top: 40px;
+}
+
+#chooseMap {
+    display: inline-block;
+    margin-top: 60px;
+}
+
+#dropDownList {
+    margin-bottom: 100px;
+}
+
+.routesOperationsTitle {
+    margin-top: 60px;
+}
+
+#deleteButton {
+    margin-bottom: 20px;
+}
