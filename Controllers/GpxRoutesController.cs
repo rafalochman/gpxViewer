@@ -24,6 +24,13 @@ namespace gpxViewer.Controllers
         // GET: GpxRoutes/Details/5
         public ActionResult Details(int? id)
         {
+            List<SelectListItem> maps = new List<SelectListItem>() {
+                new SelectListItem{Text="Bing Map", Value = "1"},
+                new SelectListItem{Text="Google Map", Value = "2"},
+                new SelectListItem{Text="Open Street Map", Value = "3"}
+            };
+            ViewBag.maps = maps;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,12 +92,11 @@ namespace gpxViewer.Controllers
             {
                 db.Entry(gpxRoute).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             return View(gpxRoute);
         }
 
-        // GET: GpxRoutes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,7 +111,7 @@ namespace gpxViewer.Controllers
             return View(gpxRoute);
         }
 
-        // POST: GpxRoutes/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -113,7 +119,7 @@ namespace gpxViewer.Controllers
             GpxRoute gpxRoute = db.GpxRoutes.Find(id);
             db.GpxRoutes.Remove(gpxRoute);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
@@ -123,6 +129,20 @@ namespace gpxViewer.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
         }
     }
 }

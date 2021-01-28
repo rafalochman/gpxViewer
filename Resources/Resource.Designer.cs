@@ -61,7 +61,7 @@ namespace gpxViewer.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure?.
+        ///   Looks up a localized string similar to Are you sure you want to delete this?.
         /// </summary>
         public static string AreYouSure {
             get {
@@ -178,6 +178,15 @@ namespace gpxViewer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rides.
+        /// </summary>
+        public static string Rides {
+            get {
+                return ResourceManager.GetString("Rides", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Routes.
         /// </summary>
         public static string Routes {
@@ -210,6 +219,15 @@ namespace gpxViewer.Resources {
         public static string Sent {
             get {
                 return ResourceManager.GetString("Sent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string Statistics {
+            get {
+                return ResourceManager.GetString("Statistics", resourceCulture);
             }
         }
         

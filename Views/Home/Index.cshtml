@@ -42,7 +42,7 @@
                 <p class="bold"> @gpxViewer.Resources.Resource.Date: <div class="inline">@Html.DisplayFor(modelItem => item.SentDate)</div></p>
             </div>
             <div>
-                @Html.ActionLink(@gpxViewer.Resources.Resource.Details, "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink(@gpxViewer.Resources.Resource.Details, "Details", "GpxRoutes", new { id = item.Id }, new { @class = "btn btn-primary" })
             </div>
             </div>
             }
@@ -50,8 +50,8 @@
 
     <div class="col-lg-2">
         <div id="statisticsDiv">
-            <p><h4>Statistics:</h4></p>
-            <p>Rides:</p>
+            <p><h4>@gpxViewer.Resources.Resource.Statistics:</h4></p>
+            <p>@gpxViewer.Resources.Resource.Rides:</p>
             <p>@gpxViewer.Resources.Resource.Distance:</p>
             <p>@gpxViewer.Resources.Resource.Time:</p>
             <p>@gpxViewer.Resources.Resource.Elevation:</p>

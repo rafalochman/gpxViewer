@@ -156,6 +156,9 @@
   <data name="Name" xml:space="preserve">
     <value>Nazwa</value>
   </data>
+  <data name="Rides" xml:space="preserve">
+    <value>Trasy</value>
+  </data>
   <data name="Routes" xml:space="preserve">
     <value>Trasy</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="Sent" xml:space="preserve">
     <value>Przesłano</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statystyki</value>
   </data>
   <data name="Time" xml:space="preserve">
     <value>Czas</value>

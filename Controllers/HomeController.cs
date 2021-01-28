@@ -50,40 +50,5 @@ namespace gpxViewer.Controllers
             routes.Reverse();
             return View(routes);
         }
-
-        public ActionResult Details(int? id)
-        {
-            List<SelectListItem> maps = new List<SelectListItem>() {
-                new SelectListItem{Text="Bing Map", Value = "1"},
-                new SelectListItem{Text="Google Map", Value = "2"},
-                new SelectListItem{Text="Open Street Map", Value = "3"}
-            };
-            ViewBag.maps = maps;
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            GpxRoute gpxRoute = db.GpxRoutes.Find(id);
-            if (gpxRoute == null)
-            {
-                return HttpNotFound();
-            }
-            return View(gpxRoute);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

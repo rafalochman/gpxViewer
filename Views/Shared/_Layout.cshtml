@@ -21,8 +21,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(@gpxViewer.Resources.Resource.Home, "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink(@gpxViewer.Resources.Resource.Routes, "Index", "GpxRoutes")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink("English", "Change", "Language", new { language = "en", returnUrl = Request.Url.AbsoluteUri }, null)</li>

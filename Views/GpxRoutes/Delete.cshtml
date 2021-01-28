@@ -4,15 +4,15 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="routesOperationsTitle">@gpxViewer.Resources.Resource.Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>@gpxViewer.Resources.Resource.AreYouSure</h3>
 <div>
-    <h4>GpxRoute</h4>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @gpxViewer.Resources.Resource.Name
         </dt>
 
         <dd>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Distance)
+            @gpxViewer.Resources.Resource.Distance
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Time)
+            @gpxViewer.Resources.Resource.Time
         </dt>
 
         <dd>
@@ -36,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Elevation)
+            @gpxViewer.Resources.Resource.Elevation
         </dt>
 
         <dd>
@@ -44,37 +44,21 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SentDate)
+            @gpxViewer.Resources.Resource.Date
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.SentDate)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FilePath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FilePath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MapUrl)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MapUrl)
-        </dd>
-
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input id="deleteButton" type="submit" value="@gpxViewer.Resources.Resource.Delete" class="btn btn-danger" />
         </div>
     }
+    @Html.ActionLink(@gpxViewer.Resources.Resource.Back, "Details", new { id = Model.Id }, new { @class = "btn btn-default" })
 </div>
