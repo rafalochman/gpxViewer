@@ -27,6 +27,8 @@
 
         @Html.ActionLink(@gpxViewer.Resources.Resource.Edit, "Edit", "GpxRoutes", new { id = Model.Id }, new { @class = "btn btn-primary" })
         @Html.ActionLink(@gpxViewer.Resources.Resource.Delete, "Delete", "GpxRoutes", new { id = Model.Id }, new { @class = "btn btn-primary" })
+
+        @Html.ActionLink(@gpxViewer.Resources.Resource.Back, null, null, null, new { href = Request.UrlReferrer })
     </div>
 
     <div class="col-lg-10">

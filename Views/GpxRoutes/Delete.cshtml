@@ -60,5 +60,5 @@
             <input id="deleteButton" type="submit" value="@gpxViewer.Resources.Resource.Delete" class="btn btn-danger" />
         </div>
     }
-    @Html.ActionLink(@gpxViewer.Resources.Resource.Back, "Details", new { id = Model.Id }, new { @class = "btn btn-default" })
+    @Html.ActionLink(@gpxViewer.Resources.Resource.Back, null, null, null, new { href = Request.UrlReferrer })
 </div>
