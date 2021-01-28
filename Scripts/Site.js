@@ -137,7 +137,7 @@ function staticMap() {
             ownerId: 'mapbox',
             styleId: 'streets-v11',
             width: 500,
-            height: 500,
+            height: 300,
             position: 'auto',
             overlays: [
                 {
@@ -152,6 +152,7 @@ function staticMap() {
     var staticImageUrl = request.url();
     document.getElementById("staticMap").src = staticImageUrl;
     var url = staticImageUrl.toString();
+    console.log(url);
     return url;
 }
 

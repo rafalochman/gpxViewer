@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@{
+    var at = "@";
+}
+
+@section scripts {
+
+    <script src="https://unpkg.com/@(at)mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+    <script type='text/javascript' src='~/config.js'></script>
+    <script src="~/Scripts/Site.js" type="text/javascript"></script>
+
+    <script src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=BING_KEY&setLang=en'
+            async defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?&callback=initMap&language=en"
+            type="text/javascript"></script>
+
+
+}
+
+@{ using (var client = new WebClient())
+    {
+        string url="";
+        string filePath = Path.Combine(Server.MapPath("~/UploadedFiles"), "name.png");
+        //client.DownloadFile(url, filePath);
+    }
+}
+
+
+<div class="row" id="mainRow">
+    <div class="col-lg-4">
+        <form method="post" enctype="multipart/form-data" asp-controller="Data" asp-action="ImportAdditionalCodes">
+            <div id="uploadFileDiv" class="form-group">
+                <label id="chooseFile" for="chooseInput" class="btn btn-primary">@gpxViewer.Resources.Resource.ChooseFile</label>
+                <input accept='.gpx' id="chooseInput" type="file" name="file" style="display: none">
+                <label class="bold" id="fileNameLabel"></label>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary" type="submit" value="@gpxViewer.Resources.Resource.Send">
+                <div class="bold" id="tempData">@TempData["Message"]</div>
+            </div>
+        </form>
+
+        <p id="chooseMap" class="bold">@gpxViewer.Resources.Resource.ChooseMap</p>
+        <p id="dropDownList">@Html.DropDownList("maps", null, new { onchange = "selectedMap(this.value)", @class = "form-control" })</p>
+
+        <div id="jsPrint" class="form-group">
+            <p class="bold"> @gpxViewer.Resources.Resource.Name: <div class="inline" id="name"></div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline" id="distance"> </div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline" id="time"></div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline" id="elevation"></div></p>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="map" id="bingMap"></div>
+        <div class="map" id="googleMap"></div>
+        <div class="map" id="openStreetMap"></div>
+    </div>
+
+    <div class="col-lg-12" id="chartDiv">
+        <canvas id="elevationChart"></canvas>
+    </div>
+
+    <div><img id="staticMap" src="" alt="Mapbox static map" /></div>
+
+
+</div>

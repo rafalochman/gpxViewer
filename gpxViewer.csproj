@@ -194,6 +194,7 @@
     <Content Include="Views\GpxRoutes\Details.cshtml" />
     <Content Include="Views\GpxRoutes\Edit.cshtml" />
     <Content Include="Views\GpxRoutes\Index.cshtml" />
+    <Content Include="Views\Home\IndexBackup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

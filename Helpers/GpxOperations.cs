@@ -1,4 +1,5 @@
-﻿using gpxViewer.Models;
+﻿using gpxViewer.DataAccess;
+using gpxViewer.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,6 +17,10 @@ namespace gpxViewer.Helpers
 
         public void ReadGpx(string filePath, string fileName)
         {
+            List<double> lat = new List<double>();
+            List<double> lng = new List<double>();
+            List<double> elevations = new List<double>();
+
             NumberFormatInfo numberFormatInfo = new CultureInfo("en-US", false).NumberFormat;
             numberFormatInfo.NumberDecimalSeparator = ".";
 
@@ -29,20 +34,41 @@ namespace gpxViewer.Helpers
                 XmlSerializeGpx.Gpx gpxObj = (XmlSerializeGpx.Gpx)xmlSerializer.Deserialize(reader);
                 foreach (XmlSerializeGpx.Trkpt track in gpxObj.trk.trkseg.trkpt)
                 {
-                    gpxData.Lat.Add(track.lat);
-                    gpxData.Lng.Add(track.lon);
-                    gpxData.Elevations.Add(track.ele);
+                    lat.Add(track.lat);
+                    lng.Add(track.lon);
+                    elevations.Add(track.ele);
                     timeList.Add(track.time);
                 }
 
-                gpxData.Distances = CalculateDistances(gpxData.Lat, gpxData.Lng);
-                gpxData.Distance = CalculateDistance(gpxData.Lat, gpxData.Lng).ToString("N", numberFormatInfo) + " km";
-                gpxData.Elevation = CalculateElevation(gpxData.Elevations).ToString("N", numberFormatInfo) + " m";
+                gpxData.Distances = CalculateDistances(lat, lng);
+                gpxData.Distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo) + " km";
+                gpxData.Elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo) + " m";
                 gpxData.Time = CalculateTime(timeList).ToString(@"hh\:mm\:ss");
                 gpxData.Name = fileName;
                 gpxData.SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl"));
+
+                var context = new DefaultContext();
+                var route = new GpxRoute
+                {
+                    Name = gpxData.Name,
+                    Distance = gpxData.Distance,
+                    Time = gpxData.Time,
+                    Elevation = gpxData.Elevation,
+                    SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl")),
+                    FilePath = filePath,
+                    MapUrl = "test"
+                };
+                if (!context.GpxRoutes.Any(r => r.Name == gpxData.Name) ||
+                    !context.GpxRoutes.Any(r => r.Elevation == gpxData.Elevation) ||
+                    !context.GpxRoutes.Any(r => r.Time == gpxData.Time) ||
+                    !context.GpxRoutes.Any(r => r.Distance == gpxData.Distance))
+                {
+                    context.GpxRoutes.Add(route);
+                }
+                context.SaveChanges();
+                fileStream.Close();
             }
-            catch
+            catch (Exception e)
             {
 
             }

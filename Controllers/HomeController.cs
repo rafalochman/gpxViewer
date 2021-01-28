@@ -1,4 +1,5 @@
-﻿using gpxViewer.Helpers;
+﻿using gpxViewer.DataAccess;
+using gpxViewer.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,6 +12,7 @@ namespace gpxViewer.Controllers
 {
     public class HomeController : Controller
     {
+        private DefaultContext db = new DefaultContext();
         public ActionResult Index()
         {
             List<SelectListItem> maps = new List<SelectListItem>() {
@@ -19,7 +21,9 @@ namespace gpxViewer.Controllers
                 new SelectListItem{Text="Open Street Map", Value = "3"}
             };
             ViewBag.maps = maps;
-            return View();
+            var routes = db.GpxRoutes.ToList();
+            routes.Reverse();
+            return View(routes);
         }
 
         [HttpPost]
@@ -51,8 +55,9 @@ namespace gpxViewer.Controllers
                 new SelectListItem{Text="Google Map", Value = "2"},
                 new SelectListItem{Text="Open Street Map", Value = "3"}
             };
-            ViewBag.maps = maps;
-            return View();
+            var routes = db.GpxRoutes.ToList();
+            routes.Reverse();
+            return View(routes);
         }
 
         public ActionResult About()
