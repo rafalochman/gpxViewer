@@ -21,14 +21,22 @@
 
 
 <div class="row" id="mainRow">
-    <div class="col-lg-2">
+    <div id="container" class="col-lg-2">
         <p id="chooseMap" class="bold">@gpxViewer.Resources.Resource.ChooseMap</p>
         <p id="dropDownList">@Html.DropDownList("maps", null, new { onchange = "selectedMap(this.value)", @class = "form-control" })</p>
 
-        @Html.ActionLink(@gpxViewer.Resources.Resource.Edit, "Edit", "GpxRoutes", new { id = Model.Id }, new { @class = "btn btn-primary" })
-        @Html.ActionLink(@gpxViewer.Resources.Resource.Delete, "Delete", "GpxRoutes", new { id = Model.Id }, new { @class = "btn btn-primary" })
+        <div id="detailsData" class="form-group">
+            <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline"> @Html.DisplayFor(model => model.Distance)</div> </p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline">@Html.DisplayFor(model => model.Time)</div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline">@Html.DisplayFor(model => model.Elevation)</div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Date: <div class="inline">@Html.DisplayFor(model => model.SentDate)</div></p>
+        </div>
 
-        @Html.ActionLink(@gpxViewer.Resources.Resource.Back, null, null, null, new { href = Request.UrlReferrer })
+        <p>@Html.ActionLink(@gpxViewer.Resources.Resource.Edit, "Edit", "GpxRoutes", new { id = Model.Id }, new { @class = "btn btn-default" })</p>
+        
+        <p>@Html.ActionLink(@gpxViewer.Resources.Resource.Delete, "Delete", "GpxRoutes", new { id = Model.Id }, new { @class = "btn btn-default" })</p>
+     
+        <p>@Html.ActionLink(@gpxViewer.Resources.Resource.Back, null, null, null, new { href = Request.UrlReferrer })</p>
     </div>
 
     <div class="col-lg-10">
@@ -36,10 +44,7 @@
         <div class="map" id="googleMap"></div>
         <div class="map" id="openStreetMap"></div>
 
-        <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline"> @Html.DisplayFor(model => model.Distance)</div> </p>
-        <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline">@Html.DisplayFor(model => model.Time)</div></p>
-        <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline">@Html.DisplayFor(model => model.Elevation)</div></p>
-        <p class="bold"> @gpxViewer.Resources.Resource.Date: <div class="inline">@Html.DisplayFor(model => model.SentDate)</div></p>
+
     </div>
 
     <div class="col-lg-12" id="chartDiv">
