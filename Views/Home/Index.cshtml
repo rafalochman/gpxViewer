@@ -42,7 +42,7 @@
                 <p class="bold"> @gpxViewer.Resources.Resource.Date: <div class="inline">@Html.DisplayFor(modelItem => item.SentDate)</div></p>
             </div>
             <div>
-                <input class="btn btn-primary" value="@gpxViewer.Resources.Resource.Details">
+                @Html.ActionLink(@gpxViewer.Resources.Resource.Details, "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
             </div>
             </div>
             }
