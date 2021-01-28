@@ -1,4 +1,5 @@
-﻿using System;
+﻿using gpxViewer.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -31,6 +32,8 @@ namespace gpxViewer.Controllers
                     string fileName = Path.GetFileName(file.FileName);
                     string filePath = Path.Combine(Server.MapPath("~/UploadedFiles"), fileName);
                     file.SaveAs(filePath);
+                    GpxOperations gpxOperations = new GpxOperations();
+                    gpxOperations.ReadGpx(filePath, fileName);
                     TempData["Message"] = Resources.Resource.Sent;
                 }
                 catch (Exception e)
