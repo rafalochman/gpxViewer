@@ -5,7 +5,7 @@ using System.Web;
 
 namespace gpxViewer.Models
 {
-    public class Route
+    public class GpxRoute
     {
         public int Id { get; set; }
         public string Name { get; set; }

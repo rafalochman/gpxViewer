@@ -12,7 +12,7 @@ namespace gpxViewer.Helpers
 {
     public class GpxOperations
     {
-        public Route route = new Route();
+        public GpxRoute gpxRoute = new GpxRoute();
 
         public void ReadGpx(string filePath, string fileName)
         {
@@ -114,5 +114,4 @@ namespace gpxViewer.Helpers
             return x * Math.PI / 180;
         }
     }
-}
 }
