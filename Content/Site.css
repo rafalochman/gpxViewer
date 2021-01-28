@@ -106,14 +106,29 @@ th {
 
 .activityContainer {
     text-align: center;
-    border: 1px solid #ecf0f1; 
-    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 15px;
     padding: 20px;
     margin-bottom: 20px;
     min-width: 540px;
+    background-color: rgba(0, 0, 0, 0.03);
 }
 
 #staticMap {
     margin-bottom: 10px;
+}
+
+#activityStats {
+    margin: auto;
+    width: 460px;
+    padding: 5px;
+}
+
+.activityRow {
+    display: flex;
+}
+
+.activityColumn {
+    flex: 33%;
 }
 

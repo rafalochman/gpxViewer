@@ -33,13 +33,22 @@
         @foreach (var item in Model)
         {
         <div class="activityContainer">
-            <h1>@Html.DisplayFor(modelItem => item.Name)</h1>
+            <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
             <div><img id="staticMap" src="@Html.DisplayFor(modelItem => item.MapUrl)" alt="Mapbox static map" /></div>
-            <div>
-                <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline"> @Html.DisplayFor(modelItem => item.Distance)</div> </p>
-                <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline">@Html.DisplayFor(modelItem => item.Time)</div></p>
-                <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline">@Html.DisplayFor(modelItem => item.Elevation)</div></p>
-                <p class="bold"> @gpxViewer.Resources.Resource.Date: <div class="inline">@Html.DisplayFor(modelItem => item.SentDate)</div></p>
+            <div id="activityStats">
+                <div class="activityRow">
+                    <div class="activityColumn">
+                        <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline"> @Html.DisplayFor(modelItem => item.Distance)</div> </p>
+                    </div>
+                    <div class="activityColumn">
+                        <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline">@Html.DisplayFor(modelItem => item.Time)</div></p>
+                    </div>
+                    <div class="activityColumn">
+                        <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline">@Html.DisplayFor(modelItem => item.Elevation)</div></p>
+                    </div>
+                </div>
+
+
             </div>
             <div>
                 @Html.ActionLink(@gpxViewer.Resources.Resource.Details, "Details", "GpxRoutes", new { id = item.Id }, new { @class = "btn btn-primary" })
