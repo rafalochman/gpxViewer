@@ -1,5 +1,5 @@
-﻿var lat = [51.91];
-var lng = [19.13];
+﻿var lat = [51.91, 53];
+var lng = [19.13, 22];
 
 
 // google maps
@@ -121,4 +121,39 @@ function imputDisplay() {
 
 window.addEventListener('load', function () {
     imputDisplay();
+    staticMap();
 })
+
+function staticMap() {
+    var openStreetMapCoordinates = [];
+    for (let i = 0; i < lat.length; i++) {
+        var openData = [lng[i], lat[i]];
+        openStreetMapCoordinates.push(openData);
+    }
+    var mapboxClient = mapboxSdk({ accessToken: config.OPEN_STREET_MAP_KEY });
+
+    var request = mapboxClient.static
+        .getStaticImage({
+            ownerId: 'mapbox',
+            styleId: 'streets-v11',
+            width: 500,
+            height: 500,
+            position: 'auto',
+            overlays: [
+                {
+                    path: {
+                        strokeColor: 'FF0000',
+                        strokeWidth: 3,
+                        coordinates: openStreetMapCoordinates,
+                    }
+                }
+            ]
+        });
+    var staticImageUrl = request.url();
+    document.getElementById("staticMap").src = staticImageUrl;
+    var url = staticImageUrl.toString();
+    return url;
+}
+
+
+
