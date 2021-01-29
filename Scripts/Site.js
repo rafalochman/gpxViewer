@@ -65,6 +65,10 @@ function initMap() {
         for (var i = 0; i < googleCoordinates.length; i++) {
             bounds.extend(googleCoordinates[i]);
         }
+        var offset = 0.002;
+        var center = bounds.getCenter();
+        bounds.extend(new google.maps.LatLng(center.lat() + offset, center.lng() + offset));
+        bounds.extend(new google.maps.LatLng(center.lat() - offset, center.lng() - offset));
         googleMap.fitBounds(bounds);
     }
 }
@@ -135,6 +139,7 @@ function selectedMap(map) {
             bingMap.style.display = "none";
             googleMap.style.display = "block";
             openStreetMap.style.display = "none";
+            initMap();
             break;
         case "3":
             bingMap.style.display = "none";
