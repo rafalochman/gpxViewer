@@ -1,5 +1,5 @@
-﻿var lat = [51.91];
-var lng = [19.13];
+﻿var lat;
+var lng;
 
 var dis;
 var ele;
@@ -10,6 +10,10 @@ var distanceLabel;
 function setLatLng(serializedLat, serializedLng) {
     lat = serializedLat;
     lng = serializedLng;
+
+    if (serializedLat.length > 1) {
+        document.getElementById('detailsDataIndex').style.display = "block";
+    }
 }
 
 function setChartData(serializedDistances, serializedElevations, distanceName, elevationName) {

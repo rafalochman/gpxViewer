@@ -43,12 +43,18 @@ th {
 }
 
 #uploadFileDiv {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 #sendDiv {
     margin-top: 30px;
     padding: 10px;
+}
+
+#fileNameLabel {
+    height: 20px;
+    position: relative;
+    display: block;
 }
 
 #statisticsDiv {
@@ -67,6 +73,11 @@ th {
 
 #detailsData {
     margin-bottom: 100px;
+}
+
+#detailsDataIndex {
+    margin-bottom: 100px;
+    display: none;
 }
 
 .routesOperationsTitle {

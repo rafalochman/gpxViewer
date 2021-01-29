@@ -43,9 +43,10 @@
     <div id="container" class="col-lg-2">
         <form method="post" enctype="multipart/form-data" asp-controller="Data" asp-action="ImportAdditionalCodes">
             <div id="uploadFileDiv" class="form-group">
+                <label class="bold" id="fileNameLabel"></label>
                 <label id="chooseFile" for="chooseInput" class="btn btn-primary">@gpxViewer.Resources.Resource.ChooseFile</label>
                 <input accept='.gpx' id="chooseInput" type="file" name="file" style="display: none">
-                <label class="bold" id="fileNameLabel"></label>
+
             </div>
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="@gpxViewer.Resources.Resource.Send">
@@ -55,7 +56,7 @@
         <p id="chooseMap" class="bold">@gpxViewer.Resources.Resource.ChooseMap</p>
         <p id="dropDownList">@Html.DropDownList("maps", null, new { onchange = "selectedMap(this.value)", @class = "form-control" })</p>
 
-        <div id="detailsData" class="form-group">
+        <div id="detailsDataIndex" class="form-group">
             <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline"> @Html.DisplayFor(model => model.Distance)</div> </p>
             <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline">@Html.DisplayFor(model => model.Time)</div></p>
             <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline">@Html.DisplayFor(model => model.Elevation)</div></p>
