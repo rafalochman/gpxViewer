@@ -2,6 +2,7 @@
 using gpxViewer.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace gpxViewer.Helpers
 {
     public class GpxOperations
     {
-        public GpxRoute gpxRoute = new GpxRoute();
+        public GpxData gpxData = new GpxData();
 
         public void ReadGpx(string filePath, string fileName)
         {
@@ -25,7 +26,7 @@ namespace gpxViewer.Helpers
             numberFormatInfo.NumberDecimalSeparator = ".";
 
             List<DateTime> timeList = new List<DateTime>();
-            GpxData gpxData = new GpxData();
+            
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(XmlSerializeGpx.Gpx), "http://www.topografix.com/GPX/1/1");
             try
             {
@@ -40,6 +41,8 @@ namespace gpxViewer.Helpers
                     timeList.Add(track.time);
                 }
 
+                gpxData.Lat = lat;
+                gpxData.Lng = lng;
                 gpxData.Distances = CalculateDistances(lat, lng);
                 gpxData.Distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo) + " km";
                 gpxData.Elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo) + " m";

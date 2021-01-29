@@ -1,6 +1,10 @@
-﻿var lat = [51.91, 53];
-var lng = [19.13, 22];
+﻿var lat = [51.91];
+var lng = [19.13];
 
+function setLatLng(serializedLat, serializedLng) {
+    lat = serializedLat;
+    lng = serializedLng;
+}
 
 // google maps
 function initMap() {
@@ -150,7 +154,6 @@ function staticMap() {
             ]
         });
     var staticImageUrl = request.url();
-    document.getElementById("staticMap").src = staticImageUrl;
     var url = staticImageUrl.toString();
     console.log(url);
     return url;

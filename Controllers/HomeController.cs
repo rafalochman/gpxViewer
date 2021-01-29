@@ -17,14 +17,37 @@ namespace gpxViewer.Controllers
         private DefaultContext db = new DefaultContext();
         public ActionResult Index()
         {
-            var routes = db.GpxRoutes.ToList();
-            routes.Reverse();
-            return View(routes);
+            List<SelectListItem> maps = new List<SelectListItem>() {
+                new SelectListItem{Text="Bing Map", Value = "1"},
+                new SelectListItem{Text="Google Map", Value = "2"},
+                new SelectListItem{Text="Open Street Map", Value = "3"}
+            };
+            ViewBag.maps = maps;
+
+            GpxData gpxData = new GpxData
+            {
+                Lat = new List<double> { 51.91 },
+                Lng = new List<double> { 19.13 },
+                Distances = new List<double> { 0.0 },
+                Elevations = new List<double> { 0.0 },
+                Distance = "",
+                Elevation = "",
+                Time = ""
+            };
+
+            return View(gpxData);
         }
 
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
+            List<SelectListItem> maps = new List<SelectListItem>() {
+                new SelectListItem{Text="Bing Map", Value = "1"},
+                new SelectListItem{Text="Google Map", Value = "2"},
+                new SelectListItem{Text="Open Street Map", Value = "3"}
+            };
+            ViewBag.maps = maps;
+            GpxData gpxData = new GpxData();
             if (file != null && file.ContentLength > 0)
             {
                 try
@@ -34,6 +57,7 @@ namespace gpxViewer.Controllers
                     file.SaveAs(filePath);
                     GpxOperations gpxOperations = new GpxOperations();
                     gpxOperations.ReadGpx(filePath, fileName);
+                    gpxData = gpxOperations.gpxData;
                     TempData["Message"] = Resources.Resource.Sent;
                 }
                 catch (Exception e)
@@ -45,10 +69,7 @@ namespace gpxViewer.Controllers
             {
                 TempData["Message"] = Resources.Resource.Error;
             }
-
-            var routes = db.GpxRoutes.ToList();
-            routes.Reverse();
-            return View(routes);
+            return View(gpxData);
         }
     }
 }
