@@ -1,9 +1,37 @@
 ﻿var lat = [51.91];
 var lng = [19.13];
 
+var dis;
+var ele;
+
+var elevationLabel;
+var distanceLabel;
+
 function setLatLng(serializedLat, serializedLng) {
     lat = serializedLat;
     lng = serializedLng;
+}
+
+function setChartData(serializedDistances, serializedElevations, distanceName, elevationName) {
+    elevationLabel = elevationName;
+    distanceLabel = distanceName;
+
+    dis = serializedDistances;
+    ele = serializedElevations;
+
+    if (serializedDistances.length > 1) {
+        document.getElementById('chartDiv').style.display = "block";
+    }
+    var x = 0;
+    while (x < dis.length) {
+        dis[x] = dis[x].toFixed(2);
+        x++;
+    }
+    x = 0;
+    while (x < ele.length) {
+        ele[x] = ele[x].toFixed(2);
+        x++;
+    }
 }
 
 // google maps
@@ -126,7 +154,52 @@ function imputDisplay() {
 window.addEventListener('load', function () {
     imputDisplay();
     staticMap();
+    drawChart();
 })
+
+function drawChart() {
+    if (dis.length > 1) {
+        let myChart = document.getElementById('elevationChart').getContext('2d');
+        let elevationChart = new Chart(myChart, {
+            type: 'line',
+            data: {
+                labels: dis,
+                datasets: [{
+                    data: ele,
+                    label: elevationLabel + " [m]",
+                    borderColor: "#18bc9c",
+                    fill: false
+                }
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 8
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: distanceLabel + ' [km]'
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 20
+                        }
+                    }]
+                },
+                elements: {
+                    point: {
+                        radius: 0
+                    }
+                }
+            }
+        });
+    }
+}
 
 function staticMap() {
     var openStreetMapCoordinates = [];

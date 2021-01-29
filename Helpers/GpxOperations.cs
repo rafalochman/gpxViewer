@@ -44,6 +44,7 @@ namespace gpxViewer.Helpers
                 gpxData.Lat = lat;
                 gpxData.Lng = lng;
                 gpxData.Distances = CalculateDistances(lat, lng);
+                gpxData.Elevations = elevations;
                 gpxData.Distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo) + " km";
                 gpxData.Elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo) + " m";
                 gpxData.Time = CalculateTime(timeList).ToString(@"hh\:mm\:ss");
