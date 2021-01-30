@@ -67,10 +67,6 @@ function initMap() {
         for (var i = 0; i < googleCoordinates.length; i++) {
             bounds.extend(googleCoordinates[i]);
         }
-        var offset = 0.002;
-        var center = bounds.getCenter();
-        bounds.extend(new google.maps.LatLng(center.lat() + offset, center.lng() + offset));
-        bounds.extend(new google.maps.LatLng(center.lat() - offset, center.lng() - offset));
         googleMap.fitBounds(bounds);
     }
 }
