@@ -23,9 +23,6 @@ function setChartData(serializedDistances, serializedElevations, distanceName, e
     dis = serializedDistances;
     ele = serializedElevations;
 
-    if (serializedDistances.length > 1) {
-        document.getElementById('chartDiv').style.display = "block";
-    }
     var x = 0;
     while (x < dis.length) {
         dis[x] = dis[x].toFixed(2);
@@ -35,6 +32,11 @@ function setChartData(serializedDistances, serializedElevations, distanceName, e
     while (x < ele.length) {
         ele[x] = ele[x].toFixed(2);
         x++;
+    }
+
+    if (serializedDistances.length > 1) {
+        document.getElementById('chartDiv').style.display = "block";
+        drawChart();
     }
 }
 
@@ -162,8 +164,6 @@ function imputDisplay() {
 
 window.addEventListener('load', function () {
     imputDisplay();
-    staticMap();
-    drawChart();
 })
 
 function drawChart() {
@@ -211,10 +211,12 @@ function drawChart() {
 }
 
 function staticMap() {
-    var openStreetMapCoordinates = [];
+    var staticCoordinates = [];
     for (let i = 0; i < lat.length; i++) {
-        var openData = [lng[i], lat[i]];
-        openStreetMapCoordinates.push(openData);
+        if (i % 50 == 0) {
+            var openData = [lng[i], lat[i]];
+            staticCoordinates.push(openData);
+        } 
     }
     var mapboxClient = mapboxSdk({ accessToken: config.OPEN_STREET_MAP_KEY });
 
@@ -230,7 +232,7 @@ function staticMap() {
                     path: {
                         strokeColor: 'FF0000',
                         strokeWidth: 3,
-                        coordinates: openStreetMapCoordinates,
+                        coordinates: staticCoordinates,
                     }
                 }
             ]
