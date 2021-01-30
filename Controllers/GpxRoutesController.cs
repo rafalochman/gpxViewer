@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using gpxViewer.DataAccess;
+using gpxViewer.Helpers;
 using gpxViewer.Models;
 
 namespace gpxViewer.Controllers
@@ -18,7 +19,14 @@ namespace gpxViewer.Controllers
         // GET: GpxRoutes
         public ActionResult Index()
         {
-            return View(db.GpxRoutes.ToList());
+            StatisticsOperations statisticsOperations = new StatisticsOperations();
+            ViewBag.Rides = statisticsOperations.statistics.RidesNumber;
+            ViewBag.Elevation = statisticsOperations.statistics.Elevation;
+            ViewBag.Distance = statisticsOperations.statistics.Distance;
+            ViewBag.Time = statisticsOperations.statistics.Time;
+            var routes = db.GpxRoutes.ToList();
+            routes.Reverse();
+            return View(routes);
         }
 
         // GET: GpxRoutes/Details/5

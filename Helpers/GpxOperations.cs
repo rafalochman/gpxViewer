@@ -47,8 +47,8 @@ namespace gpxViewer.Helpers
                 gpxData.Lng = lng;
                 gpxData.Distances = CalculateDistances(lat, lng);
                 gpxData.Elevations = elevations;
-                gpxData.Distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo) + " km";
-                gpxData.Elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo) + " m";
+                gpxData.Distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo);
+                gpxData.Elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo);
                 gpxData.Time = CalculateTime(timeList).ToString(@"hh\:mm\:ss");
                 gpxData.Name = fileName;
                 gpxData.SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl"));

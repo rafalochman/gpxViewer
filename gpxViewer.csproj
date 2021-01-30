@@ -139,9 +139,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\GpxOperations.cs" />
+    <Compile Include="Helpers\StatisticsOperations.cs" />
     <Compile Include="Helpers\XmlSerializeGpx.cs" />
     <Compile Include="Models\GpxData.cs" />
     <Compile Include="Models\GpxRoute.cs" />
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
