@@ -210,38 +210,6 @@ function drawChart() {
     }
 }
 
-function staticMap() {
-    var staticCoordinates = [];
-    for (let i = 0; i < lat.length; i++) {
-        if (i % 50 == 0) {
-            var openData = [lng[i], lat[i]];
-            staticCoordinates.push(openData);
-        } 
-    }
-    var mapboxClient = mapboxSdk({ accessToken: config.OPEN_STREET_MAP_KEY });
-
-    var request = mapboxClient.static
-        .getStaticImage({
-            ownerId: 'mapbox',
-            styleId: 'streets-v11',
-            width: 500,
-            height: 300,
-            position: 'auto',
-            overlays: [
-                {
-                    path: {
-                        strokeColor: 'FF0000',
-                        strokeWidth: 3,
-                        coordinates: staticCoordinates,
-                    }
-                }
-            ]
-        });
-    var staticImageUrl = request.url();
-    var url = staticImageUrl.toString();
-    console.log(url);
-    return url;
-}
 
 
 

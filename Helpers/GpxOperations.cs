@@ -1,11 +1,14 @@
 ﻿using gpxViewer.DataAccess;
 using gpxViewer.Models;
+using PolylineEncoder.Net.Models;
+using PolylineEncoder.Net.Utility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Xml;
 using System.Xml.Serialization;
@@ -21,12 +24,11 @@ namespace gpxViewer.Helpers
             List<double> lat = new List<double>();
             List<double> lng = new List<double>();
             List<double> elevations = new List<double>();
+            List<DateTime> timeList = new List<DateTime>();
 
             NumberFormatInfo numberFormatInfo = new CultureInfo("en-US", false).NumberFormat;
             numberFormatInfo.NumberDecimalSeparator = ".";
 
-            List<DateTime> timeList = new List<DateTime>();
-            
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(XmlSerializeGpx.Gpx), "http://www.topografix.com/GPX/1/1");
             try
             {
@@ -40,7 +42,7 @@ namespace gpxViewer.Helpers
                     elevations.Add(track.ele);
                     timeList.Add(track.time);
                 }
-
+ 
                 gpxData.Lat = lat;
                 gpxData.Lng = lng;
                 gpxData.Distances = CalculateDistances(lat, lng);
@@ -60,7 +62,7 @@ namespace gpxViewer.Helpers
                     Elevation = gpxData.Elevation,
                     SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl")),
                     FilePath = filePath,
-                    MapUrl = "test"
+                    MapUrl = PrepareUrl(lat, lng)
                 };
                 if (!context.GpxRoutes.Any(r => r.Name == gpxData.Name) ||
                     !context.GpxRoutes.Any(r => r.Elevation == gpxData.Elevation) ||
@@ -78,7 +80,26 @@ namespace gpxViewer.Helpers
             }
         }
 
-        private List<double> CalculateDistances(List<double> lat, List<double> lng)
+        private string PrepareUrl(List<double> lat, List<double> lng)
+        {
+            var geoPoints = new List<IGeoCoordinate>();
+            for (int i = 0; i < lat.Count; i++)
+            {
+                if (i % 50 == 0)
+                {
+                    geoPoints.Add(new GeoCoordinate(lat[i], lng[i]));
+                }
+            }
+
+            var polylineUtility = new PolylineUtility();
+            var polyLine = polylineUtility.Encode(geoPoints); 
+            string encodedPolyline = HttpUtility.UrlEncode(polyLine);
+            string url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path-3+FF0000(" + encodedPolyline + ")/auto/500x300?access_token=" + config.MAPBOX_KEY;
+            return url;
+        }
+   
+
+    private List<double> CalculateDistances(List<double> lat, List<double> lng)
         {
             List<double> distancesList = new List<double>();
             double distance = 0;
