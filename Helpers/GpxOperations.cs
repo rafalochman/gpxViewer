@@ -53,7 +53,7 @@ namespace gpxViewer.Helpers
                 gpxData.Name = fileName;
                 gpxData.SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl"));
 
-                var context = new DefaultContext();
+                var context = new GpxContext();
                 var route = new GpxRoute
                 {
                     Name = gpxData.Name,
@@ -62,7 +62,11 @@ namespace gpxViewer.Helpers
                     Elevation = gpxData.Elevation,
                     SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl")),
                     FilePath = filePath,
-                    MapUrl = PrepareUrl(lat, lng)
+                    MapUrl = PrepareUrl(lat, lng),
+                    Lat = string.Join(",", lat),
+                    Lng = string.Join(",", lng),
+                    Elevations = string.Join(",", gpxData.Elevations),
+                    Distances = string.Join(",", gpxData.Distances)
                 };
                 if (!context.GpxRoutes.Any(r => r.Name == gpxData.Name) ||
                     !context.GpxRoutes.Any(r => r.Elevation == gpxData.Elevation) ||

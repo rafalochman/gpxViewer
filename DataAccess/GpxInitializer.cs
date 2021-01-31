@@ -8,9 +8,9 @@ using System.Web;
 
 namespace gpxViewer.DataAccess
 {
-    public class DefaultInitializer : DropCreateDatabaseIfModelChanges<DefaultContext>
+    public class GpxInitializer : DropCreateDatabaseIfModelChanges<GpxContext>
     {
-        protected override void Seed(DefaultContext context)
+        protected override void Seed(GpxContext context)
         {
             context.SaveChanges();
             base.Seed(context);

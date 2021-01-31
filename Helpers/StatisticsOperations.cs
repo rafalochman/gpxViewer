@@ -2,8 +2,10 @@
 using gpxViewer.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Globalization;
 
 namespace gpxViewer.Helpers
 {
@@ -18,7 +20,9 @@ namespace gpxViewer.Helpers
 
         private void SetStatistics()
         {
-            DefaultContext db = new DefaultContext();
+            NumberFormatInfo numberFormatInfo = new CultureInfo("en-US", false).NumberFormat;
+            numberFormatInfo.NumberDecimalSeparator = ".";
+            GpxContext db = new GpxContext();
             var routes = db.GpxRoutes.ToList();
 
             double distance = 0;
@@ -27,8 +31,8 @@ namespace gpxViewer.Helpers
 
             foreach(GpxRoute route in routes)
             {
-                distance += Double.Parse(route.Distance);
-                elevation += Double.Parse(route.Elevation);
+                distance += Double.Parse(route.Distance, numberFormatInfo);
+                elevation += Double.Parse(route.Elevation, numberFormatInfo);
                 time += TimeSpan.Parse(route.Time);
             }
 

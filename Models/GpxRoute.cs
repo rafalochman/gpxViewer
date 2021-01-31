@@ -15,5 +15,9 @@ namespace gpxViewer.Models
         public string SentDate { get; set; }
         public string FilePath { get; set; }
         public string MapUrl { get; set; }
+        public string Lat { get; set; }
+        public string Lng { get; set; }
+        public string Distances { get; set; }
+        public string Elevations { get; set; }
     }
 }

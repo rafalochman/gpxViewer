@@ -14,7 +14,7 @@ namespace gpxViewer.Controllers
 {
     public class GpxRoutesController : Controller
     {
-        private DefaultContext db = new DefaultContext();
+        private GpxContext db = new GpxContext();
 
         // GET: GpxRoutes
         public ActionResult Index()

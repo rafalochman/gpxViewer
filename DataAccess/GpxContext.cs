@@ -7,9 +7,9 @@ using System.Web;
 
 namespace gpxViewer.DataAccess
 {
-    public class DefaultContext : DbContext
+    public class GpxContext : DbContext
     {
-        public DefaultContext() : base("DefaultContext")
+        public GpxContext() : base("GpxContext")
         {
 
         }

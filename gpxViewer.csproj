@@ -133,8 +133,8 @@
     <Compile Include="Controllers\GpxRoutesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
-    <Compile Include="DataAccess\DefaultContext.cs" />
-    <Compile Include="DataAccess\DefaultInitializer.cs" />
+    <Compile Include="DataAccess\GpxContext.cs" />
+    <Compile Include="DataAccess\GpxInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

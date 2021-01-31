@@ -14,7 +14,7 @@ namespace gpxViewer.Controllers
 {
     public class HomeController : Controller
     {
-        private DefaultContext db = new DefaultContext();
+        private GpxContext db = new GpxContext();
         public ActionResult Index()
         {
             List<SelectListItem> maps = new List<SelectListItem>() {
