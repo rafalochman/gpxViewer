@@ -11,7 +11,7 @@ namespace gpxViewer.Helpers
 {
     public class StatisticsOperations
     {
-        public Statistics statistics = new Statistics();
+        public Statistics Statistics { get; set; }
         
         public StatisticsOperations()
         {
@@ -36,10 +36,13 @@ namespace gpxViewer.Helpers
                 time += TimeSpan.Parse(route.Time);
             }
 
-            statistics.RidesNumber = routes.Count;
-            statistics.Distance = distance;
-            statistics.Elevation = elevation;
-            statistics.Time = time;
+            Statistics = new Statistics
+            {
+                RidesNumber = routes.Count,
+                Distance = distance,
+                Elevation = elevation,
+                Time = time
+            };
         }
     }
 }

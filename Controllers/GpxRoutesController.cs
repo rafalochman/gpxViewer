@@ -21,10 +21,10 @@ namespace gpxViewer.Controllers
         public ActionResult Index()
         {
             StatisticsOperations statisticsOperations = new StatisticsOperations();
-            ViewBag.Rides = statisticsOperations.statistics.RidesNumber;
-            ViewBag.Elevation = statisticsOperations.statistics.Elevation;
-            ViewBag.Distance = statisticsOperations.statistics.Distance;
-            ViewBag.Time = statisticsOperations.statistics.Time;
+            ViewBag.Rides = statisticsOperations.Statistics.RidesNumber;
+            ViewBag.Elevation = statisticsOperations.Statistics.Elevation;
+            ViewBag.Distance = statisticsOperations.Statistics.Distance;
+            ViewBag.Time = statisticsOperations.Statistics.Time;
             var routes = db.GpxRoutes.ToList();
             routes.Reverse();
             return View(routes);
@@ -50,9 +50,8 @@ namespace gpxViewer.Controllers
             ViewBag.Elevation = gpxRoute.Elevation;
             ViewBag.Time = gpxRoute.Time;
             ViewBag.sentDate = gpxRoute.SentDate;
-            GpxOperations gpxOperations = new GpxOperations();
-            gpxOperations.ReadGpx(gpxRoute.FilePath, gpxRoute.Name);
-            GpxData gpxData = gpxOperations.gpxData;
+            GpxOperations gpxOperations = new GpxOperations(gpxRoute.FilePath, gpxRoute.Name);
+            GpxData gpxData = gpxOperations.GpxData;
             if (gpxRoute == null)
             {
                 return HttpNotFound();
@@ -148,20 +147,6 @@ namespace gpxViewer.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }

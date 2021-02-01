@@ -52,13 +52,12 @@ namespace gpxViewer.Controllers
                     string fileName = Path.GetFileName(file.FileName);
                     string filePath = Path.Combine(Server.MapPath("~/UploadedFiles"), fileName);
                     file.SaveAs(filePath);
-                    GpxOperations gpxOperations = new GpxOperations();
-                    gpxOperations.ReadGpx(filePath, fileName);
-                    gpxData = gpxOperations.gpxData;
+                    GpxOperations gpxOperations = new GpxOperations(filePath, fileName);
+                    gpxData = gpxOperations.GpxData;
                     ViewBag.name = fileName;
-                    ViewBag.distance = gpxOperations.distance;
-                    ViewBag.elevation = gpxOperations.elevation;
-                    ViewBag.time = gpxOperations.time;
+                    ViewBag.distance = gpxOperations.Distance;
+                    ViewBag.elevation = gpxOperations.Elevation;
+                    ViewBag.time = gpxOperations.Time;
                     TempData["Message"] = Resources.Resource.Sent;
                 }
                 catch (Exception e)

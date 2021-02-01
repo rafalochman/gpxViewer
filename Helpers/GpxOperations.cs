@@ -17,13 +17,18 @@ namespace gpxViewer.Helpers
 {
     public class GpxOperations
     {
-        public GpxData gpxData = new GpxData();
-        public string distance;
-        public string elevation;
-        public string time;
-        public string sentDate;
+        public GpxData GpxData { get; set; }
+        public string Distance { get; set; }
+        public string Elevation { get; set; }
+        public string Time { get; set; }
+        public string SentDate { get; set; }
 
-        public void ReadGpx(string filePath, string fileName)
+        public GpxOperations(string filePath, string fileName)
+        {
+            ReadGpx(filePath, fileName);
+        }
+
+        private void ReadGpx(string filePath, string fileName)
         {
             List<double> lat = new List<double>();
             List<double> lng = new List<double>();
@@ -46,31 +51,34 @@ namespace gpxViewer.Helpers
                     elevations.Add(track.ele);
                     timeList.Add(track.time);
                 }
- 
-                gpxData.Lat = lat;
-                gpxData.Lng = lng;
-                gpxData.Distances = CalculateDistances(lat, lng);
-                gpxData.Elevations = elevations;
-                distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo);
-                elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo);
-                time = CalculateTime(timeList).ToString(@"hh\:mm\:ss");
-                sentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl"));
+
+                GpxData = new GpxData
+                {
+                    Lat = lat,
+                    Lng = lng,
+                    Distances = CalculateDistances(lat, lng),
+                    Elevations = elevations
+                };
+                Distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo);
+                Elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo);
+                Time = CalculateTime(timeList).ToString(@"hh\:mm\:ss");
+                SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl"));
 
                 var context = new GpxContext();
                 var route = new GpxRoute
                 {
                     Name = fileName,
-                    Distance = distance,
-                    Time = time,
-                    Elevation = elevation,
-                    SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl")),
+                    Distance = Distance,
+                    Time = Time,
+                    Elevation = Elevation,
+                    SentDate = SentDate,
                     FilePath = filePath,
                     MapUrl = PrepareUrl(lat, lng)
                 };
                 if (!context.GpxRoutes.Any(r => r.Name == fileName) ||
-                    !context.GpxRoutes.Any(r => r.Elevation == elevation) ||
-                    !context.GpxRoutes.Any(r => r.Time == time) ||
-                    !context.GpxRoutes.Any(r => r.Distance == distance))
+                    !context.GpxRoutes.Any(r => r.Elevation == Elevation) ||
+                    !context.GpxRoutes.Any(r => r.Time == Time) ||
+                    !context.GpxRoutes.Any(r => r.Distance == Distance))
                 {
                     context.GpxRoutes.Add(route);
                 }
