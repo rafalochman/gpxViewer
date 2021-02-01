@@ -339,6 +339,6 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-/config.js
+
 /UploadedFiles/
-/Helpers/config.cs
+/Configs

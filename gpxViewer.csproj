@@ -129,7 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Helpers\config.cs" />
+    <Compile Include="Configs\config.cs" />
     <Compile Include="Controllers\GpxRoutesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
@@ -157,7 +157,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="config.js" />
+    <Content Include="Configs\config.js" />
     <Content Include="Content\bootstrap-flatly.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

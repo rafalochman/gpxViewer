@@ -1,4 +1,5 @@
-﻿using gpxViewer.DataAccess;
+﻿using gpxViewer.Configs;
+using gpxViewer.DataAccess;
 using gpxViewer.Models;
 using PolylineEncoder.Net.Models;
 using PolylineEncoder.Net.Utility;
