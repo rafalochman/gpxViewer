@@ -108,6 +108,8 @@ namespace gpxViewer.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(gpxRoute).State = EntityState.Modified;
+                db.Entry(gpxRoute).Property("FilePath").IsModified = false;
+                db.Entry(gpxRoute).Property("MapUrl").IsModified = false;
                 db.SaveChanges();
                 return RedirectToAction("Index", "GpxRoutes");
             }
