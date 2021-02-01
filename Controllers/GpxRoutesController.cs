@@ -109,7 +109,7 @@ namespace gpxViewer.Controllers
             {
                 db.Entry(gpxRoute).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "GpxRoutes");
             }
             return View(gpxRoute);
         }
@@ -136,7 +136,7 @@ namespace gpxViewer.Controllers
             GpxRoute gpxRoute = db.GpxRoutes.Find(id);
             db.GpxRoutes.Remove(gpxRoute);
             db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "GpxRoutes");
         }
 
         protected override void Dispose(bool disposing)
