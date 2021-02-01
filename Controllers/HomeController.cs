@@ -1,6 +1,7 @@
 ﻿using gpxViewer.DataAccess;
 using gpxViewer.Helpers;
 using gpxViewer.Models;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +16,8 @@ namespace gpxViewer.Controllers
     public class HomeController : Controller
     {
         private GpxContext db = new GpxContext();
+        private DefaultGpxData defaultGpxData = new DefaultGpxData();
+        private readonly ILog Log = LogManager.GetLogger(typeof(HomeController));
         public ActionResult Index()
         {
             List<SelectListItem> maps = new List<SelectListItem>() {
@@ -23,14 +26,7 @@ namespace gpxViewer.Controllers
                 new SelectListItem{Text="Open Street Map", Value = "3"}
             };
             ViewBag.maps = maps;
-
-            GpxData gpxData = new GpxData
-            {
-                Lat = new List<double> { 51.91 },
-                Lng = new List<double> { 19.13 },
-                Distances = new List<double> { 0.0 },
-                Elevations = new List<double> { 0.0 }
-            };
+            var gpxData = defaultGpxData.GetDefaultGpxData();
 
             return View(gpxData);
         }
@@ -44,7 +40,7 @@ namespace gpxViewer.Controllers
                 new SelectListItem{Text="Open Street Map", Value = "3"}
             };
             ViewBag.maps = maps;
-            GpxData gpxData = new GpxData();
+            var gpxData = new GpxData();
             if (file != null && file.ContentLength > 0)
             {
                 try
@@ -58,12 +54,22 @@ namespace gpxViewer.Controllers
                     ViewBag.distance = gpxOperations.Distance;
                     ViewBag.elevation = gpxOperations.Elevation;
                     ViewBag.time = gpxOperations.Time;
-                    TempData["Message"] = Resources.Resource.Sent;
                 }
                 catch (Exception e)
                 {
-                    TempData["Message"] = Resources.Resource.Error;
+                    gpxData = defaultGpxData.GetDefaultGpxData();
+                    Log.Error(e.Message);
                 }
+            }
+            else
+            {
+                gpxData = defaultGpxData.GetDefaultGpxData();
+                Log.Error("File content length error");
+            }
+
+            if (gpxData.Lat.Count > 1)
+            {
+                TempData["Message"] = Resources.Resource.Sent;
             }
             else
             {

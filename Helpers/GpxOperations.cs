@@ -1,6 +1,7 @@
 ﻿using gpxViewer.Configs;
 using gpxViewer.DataAccess;
 using gpxViewer.Models;
+using log4net;
 using PolylineEncoder.Net.Models;
 using PolylineEncoder.Net.Utility;
 using System;
@@ -23,6 +24,8 @@ namespace gpxViewer.Helpers
         public string Elevation { get; set; }
         public string Time { get; set; }
         public string SentDate { get; set; }
+
+        private readonly ILog Log = LogManager.GetLogger(typeof(GpxOperations));
 
         public GpxOperations(string filePath, string fileName)
         {
@@ -88,7 +91,9 @@ namespace gpxViewer.Helpers
             }
             catch (Exception e)
             {
-
+                var defaultGpxData = new DefaultGpxData();
+                GpxData = defaultGpxData.GetDefaultGpxData();
+                Log.Error(e.Message);
             }
         }
 
