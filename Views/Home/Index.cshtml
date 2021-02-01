@@ -34,6 +34,7 @@
     <script>
         setLatLng(@Html.Raw(searializedLat), @Html.Raw(searializedLng));
         setChartData(@Html.Raw(searializedDistances), @Html.Raw(searializedElevations), "@gpxViewer.Resources.Resource.Distance", "@gpxViewer.Resources.Resource.Elevation");
+        displayData();
     </script>
 }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>

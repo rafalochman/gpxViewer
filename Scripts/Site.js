@@ -10,8 +10,10 @@ var distanceLabel;
 function setLatLng(serializedLat, serializedLng) {
     lat = serializedLat;
     lng = serializedLng;
+}
 
-    if (serializedLat.length > 1) {
+function displayData() {
+    if (lat.length > 1) {
         document.getElementById('detailsDataIndex').style.display = "block";
     }
 }
@@ -159,7 +161,9 @@ function imputDisplay() {
 }
 
 window.addEventListener('load', function () {
-    imputDisplay();
+    if (document.getElementById('chooseInput')) {
+        imputDisplay();
+    }
 })
 
 function drawChart() {

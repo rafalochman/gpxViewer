@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -44,11 +45,15 @@ namespace gpxViewer.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             GpxRoute gpxRoute = db.GpxRoutes.Find(id);
+            ViewBag.id = gpxRoute.Id;
+            GpxOperations gpxOperations = new GpxOperations();
+            gpxOperations.ReadGpx(gpxRoute.FilePath, gpxRoute.Name);
+            GpxData gpxData = gpxOperations.gpxData;
             if (gpxRoute == null)
             {
                 return HttpNotFound();
             }
-            return View(gpxRoute);
+            return View(gpxData);
         }
 
         // GET: GpxRoutes/Create
