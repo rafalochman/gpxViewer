@@ -58,10 +58,10 @@
         <p id="dropDownList">@Html.DropDownList("maps", null, new { onchange = "selectedMap(this.value)", @class = "form-control" })</p>
 
         <div id="detailsDataIndex" class="form-group">
-            <p class="bold"> @gpxViewer.Resources.Resource.Name: <div class="inline"> @Html.DisplayFor(model => model.Name)</div> </p>
-            <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline"> @Html.DisplayFor(model => model.Distance) km</div> </p>
-            <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline">@Html.DisplayFor(model => model.Time)</div></p>
-            <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline">@Html.DisplayFor(model => model.Elevation) m</div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Name: <div class="inline">@ViewBag.name</div> </p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline"> @ViewBag.distance km</div> </p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline">@ViewBag.time</div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline">@ViewBag.elevation m</div></p>
         </div>
     </div>
 

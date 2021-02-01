@@ -29,10 +29,7 @@ namespace gpxViewer.Controllers
                 Lat = new List<double> { 51.91 },
                 Lng = new List<double> { 19.13 },
                 Distances = new List<double> { 0.0 },
-                Elevations = new List<double> { 0.0 },
-                Distance = "",
-                Elevation = "",
-                Time = ""
+                Elevations = new List<double> { 0.0 }
             };
 
             return View(gpxData);
@@ -58,6 +55,10 @@ namespace gpxViewer.Controllers
                     GpxOperations gpxOperations = new GpxOperations();
                     gpxOperations.ReadGpx(filePath, fileName);
                     gpxData = gpxOperations.gpxData;
+                    ViewBag.name = fileName;
+                    ViewBag.distance = gpxOperations.distance;
+                    ViewBag.elevation = gpxOperations.elevation;
+                    ViewBag.time = gpxOperations.time;
                     TempData["Message"] = Resources.Resource.Sent;
                 }
                 catch (Exception e)

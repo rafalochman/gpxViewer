@@ -42,10 +42,10 @@
         <p id="dropDownList">@Html.DropDownList("maps", null, new { onchange = "selectedMap(this.value)", @class = "form-control" })</p>
 
         <div id="detailsData" class="form-group">
-            <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline"> @Html.DisplayFor(model => model.Distance)</div> </p>
-            <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline">@Html.DisplayFor(model => model.Time)</div></p>
-            <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline">@Html.DisplayFor(model => model.Elevation)</div></p>
-            <p class="bold"> @gpxViewer.Resources.Resource.Date: <div class="inline">@Html.DisplayFor(model => model.SentDate)</div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline"> @ViewBag.distance</div> </p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline">@ViewBag.time</div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline">@ViewBag.elevation</div></p>
+            <p class="bold"> @gpxViewer.Resources.Resource.Date: <div class="inline">@ViewBag.sentDate</div></p>
         </div>
 
         <p>@Html.ActionLink(@gpxViewer.Resources.Resource.Edit, "Edit", "GpxRoutes", new { id = ViewBag.id }, new { @class = "btn btn-default" })</p>

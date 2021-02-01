@@ -18,6 +18,10 @@ namespace gpxViewer.Helpers
     public class GpxOperations
     {
         public GpxData gpxData = new GpxData();
+        public string distance;
+        public string elevation;
+        public string time;
+        public string sentDate;
 
         public void ReadGpx(string filePath, string fileName)
         {
@@ -47,31 +51,26 @@ namespace gpxViewer.Helpers
                 gpxData.Lng = lng;
                 gpxData.Distances = CalculateDistances(lat, lng);
                 gpxData.Elevations = elevations;
-                gpxData.Distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo);
-                gpxData.Elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo);
-                gpxData.Time = CalculateTime(timeList).ToString(@"hh\:mm\:ss");
-                gpxData.Name = fileName;
-                gpxData.SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl"));
+                distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo);
+                elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo);
+                time = CalculateTime(timeList).ToString(@"hh\:mm\:ss");
+                sentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl"));
 
                 var context = new GpxContext();
                 var route = new GpxRoute
                 {
-                    Name = gpxData.Name,
-                    Distance = gpxData.Distance,
-                    Time = gpxData.Time,
-                    Elevation = gpxData.Elevation,
+                    Name = fileName,
+                    Distance = distance,
+                    Time = time,
+                    Elevation = elevation,
                     SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl")),
                     FilePath = filePath,
-                    MapUrl = PrepareUrl(lat, lng),
-                    Lat = string.Join(",", lat),
-                    Lng = string.Join(",", lng),
-                    Elevations = string.Join(",", gpxData.Elevations),
-                    Distances = string.Join(",", gpxData.Distances)
+                    MapUrl = PrepareUrl(lat, lng)
                 };
-                if (!context.GpxRoutes.Any(r => r.Name == gpxData.Name) ||
-                    !context.GpxRoutes.Any(r => r.Elevation == gpxData.Elevation) ||
-                    !context.GpxRoutes.Any(r => r.Time == gpxData.Time) ||
-                    !context.GpxRoutes.Any(r => r.Distance == gpxData.Distance))
+                if (!context.GpxRoutes.Any(r => r.Name == fileName) ||
+                    !context.GpxRoutes.Any(r => r.Elevation == elevation) ||
+                    !context.GpxRoutes.Any(r => r.Time == time) ||
+                    !context.GpxRoutes.Any(r => r.Distance == distance))
                 {
                     context.GpxRoutes.Add(route);
                 }

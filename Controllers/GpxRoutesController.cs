@@ -46,6 +46,10 @@ namespace gpxViewer.Controllers
             }
             GpxRoute gpxRoute = db.GpxRoutes.Find(id);
             ViewBag.id = gpxRoute.Id;
+            ViewBag.distance = gpxRoute.Distance;
+            ViewBag.Elevation = gpxRoute.Elevation;
+            ViewBag.Time = gpxRoute.Time;
+            ViewBag.sentDate = gpxRoute.SentDate;
             GpxOperations gpxOperations = new GpxOperations();
             gpxOperations.ReadGpx(gpxRoute.FilePath, gpxRoute.Name);
             GpxData gpxData = gpxOperations.gpxData;
