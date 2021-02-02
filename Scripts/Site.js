@@ -30,11 +30,6 @@ function setChartData(serializedDistances, serializedElevations, distanceName, e
         dis[x] = dis[x].toFixed(2);
         x++;
     }
-    x = 0;
-    while (x < ele.length) {
-        ele[x] = ele[x].toFixed(2);
-        x++;
-    }
 
     if (serializedDistances.length > 1) {
         document.getElementById('chartDiv').style.display = "block";

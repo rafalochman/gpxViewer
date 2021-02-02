@@ -61,7 +61,7 @@ namespace gpxViewer.Helpers
                     Lat = lat,
                     Lng = lng,
                     Distances = CalculateDistances(lat, lng),
-                    Elevations = elevations
+                    Elevations = CalculateElevations(elevations)
                 };
                 Distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo);
                 Elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo);
@@ -116,16 +116,32 @@ namespace gpxViewer.Helpers
         }
    
 
-    private List<double> CalculateDistances(List<double> lat, List<double> lng)
+        private List<double> CalculateDistances(List<double> lat, List<double> lng)
         {
             List<double> distancesList = new List<double>();
             double distance = 0;
             for (int i = 0; i < lat.Count - 1; i++)
             {
-                distance += ArcInMeters(lat[i], lng[i], lat[i + 1], lng[i + 1]);
-                distancesList.Add(distance / 1000);
+                distance += ArcInMeters(lat[i], lng[i], lat[i + 1], lng[i + 1]) /1000;
+                if (i % 3 == 0)
+                {
+                    distancesList.Add(Math.Round(distance,2));
+                }
             }
             return distancesList;
+        }
+
+        private List<double> CalculateElevations(List<double> elevations)
+        {
+            List<double> elevationsList = new List<double>();
+            for (int i = 0; i < elevations.Count - 1; i++)
+            {
+                if (i % 3 == 0)
+                {
+                    elevationsList.Add(Math.Round(elevations[i], 2));
+                }
+            }
+            return elevationsList;
         }
 
         private TimeSpan CalculateTime(List<DateTime> time)
