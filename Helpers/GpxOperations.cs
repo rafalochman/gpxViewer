@@ -20,11 +20,6 @@ namespace gpxViewer.Helpers
     public class GpxOperations
     {
         public GpxData GpxData { get; set; }
-        public string Distance { get; set; }
-        public string Elevation { get; set; }
-        public string Time { get; set; }
-        public string SentDate { get; set; }
-
         private readonly ILog Log = LogManager.GetLogger(typeof(GpxOperations));
 
         public GpxOperations(string filePath, string fileName)
@@ -61,32 +56,34 @@ namespace gpxViewer.Helpers
                     Lat = lat,
                     Lng = lng,
                     Distances = CalculateDistances(lat, lng),
-                    Elevations = CalculateElevations(elevations)
+                    Elevations = CalculateElevations(elevations),
+                    Name = fileName,
+                    Distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo),
+                    Elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo),
+                    Time = CalculateTime(timeList).ToString(@"hh\:mm\:ss"),
+                    SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl"))
                 };
-                Distance = CalculateDistance(lat, lng).ToString("N", numberFormatInfo);
-                Elevation = CalculateElevation(elevations).ToString("N", numberFormatInfo);
-                Time = CalculateTime(timeList).ToString(@"hh\:mm\:ss");
-                SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl"));
 
                 var context = new GpxContext();
                 var route = new GpxRoute
                 {
-                    Name = fileName,
-                    Distance = Distance,
-                    Time = Time,
-                    Elevation = Elevation,
-                    SentDate = SentDate,
+                    Name = GpxData.Name,
+                    Distance = GpxData.Distance,
+                    Time = GpxData.Time,
+                    Elevation = GpxData.Elevation,
+                    SentDate = GpxData.SentDate,
                     FilePath = filePath,
                     MapUrl = PrepareUrl(lat, lng)
                 };
                 if (!context.GpxRoutes.Any(r => r.Name == fileName) ||
-                    !context.GpxRoutes.Any(r => r.Elevation == Elevation) ||
-                    !context.GpxRoutes.Any(r => r.Time == Time) ||
-                    !context.GpxRoutes.Any(r => r.Distance == Distance))
+                    !context.GpxRoutes.Any(r => r.Elevation == GpxData.Elevation) ||
+                    !context.GpxRoutes.Any(r => r.Time == GpxData.Time) ||
+                    !context.GpxRoutes.Any(r => r.Distance == GpxData.Distance))
                 {
                     context.GpxRoutes.Add(route);
                 }
                 context.SaveChanges();
+
                 fileStream.Close();
             }
             catch (Exception e)

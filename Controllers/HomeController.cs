@@ -50,10 +50,6 @@ namespace gpxViewer.Controllers
                     file.SaveAs(filePath);
                     GpxOperations gpxOperations = new GpxOperations(filePath, fileName);
                     gpxData = gpxOperations.GpxData;
-                    ViewBag.name = fileName;
-                    ViewBag.distance = gpxOperations.Distance;
-                    ViewBag.elevation = gpxOperations.Elevation;
-                    ViewBag.time = gpxOperations.Time;
                 }
                 catch (Exception e)
                 {
