@@ -1,4 +1,5 @@
-﻿using gpxViewer.DataAccess;
+﻿using gpxViewer.Configs;
+using gpxViewer.DataAccess;
 using gpxViewer.Helpers;
 using gpxViewer.Models;
 using log4net;
@@ -26,6 +27,7 @@ namespace gpxViewer.Controllers
                 new SelectListItem{Text="Open Street Map", Value = "3"}
             };
             ViewBag.maps = maps;
+            ViewBag.key = config.BING_KEY;
             var gpxData = defaultGpxData.GetDefaultGpxData();
 
             return View(gpxData);
@@ -40,6 +42,7 @@ namespace gpxViewer.Controllers
                 new SelectListItem{Text="Open Street Map", Value = "3"}
             };
             ViewBag.maps = maps;
+            ViewBag.key = config.BING_KEY;
             var gpxData = new GpxData();
             if (file != null && file.ContentLength > 0)
             {

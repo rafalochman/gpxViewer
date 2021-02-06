@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using gpxViewer.Configs;
 using gpxViewer.DataAccess;
 using gpxViewer.Helpers;
 using gpxViewer.Models;
@@ -46,6 +47,7 @@ namespace gpxViewer.Controllers
             }
             GpxRoute gpxRoute = db.GpxRoutes.Find(id);
             ViewBag.id = gpxRoute.Id;
+            ViewBag.key = config.BING_KEY;
             GpxOperations gpxOperations = new GpxOperations(gpxRoute.FilePath, gpxRoute.Name);
             GpxData gpxData = gpxOperations.GpxData;
             if (gpxRoute == null)
