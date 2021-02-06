@@ -13,6 +13,7 @@
 }
 
 @section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script type='text/javascript' src='~/Configs/config.js'></script>
     <script src="~/Scripts/Site.js" type="text/javascript"></script>
 
@@ -32,8 +33,6 @@
         setChartData(@Html.Raw(searializedDistances), @Html.Raw(searializedElevations), "@gpxViewer.Resources.Resource.Distance", "@gpxViewer.Resources.Resource.Elevation");
     </script>
 }
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-<script src="~/Scripts/site.js" type="text/javascript"></script>
 
 
 <div class="row" id="mainRow">
