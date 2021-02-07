@@ -343,3 +343,7 @@ healthchecksdb
 /UploadedFiles/
 /Configs
 /Logs
+/Properties/serviceDependencies.gpxViewer - Web Deploy.json
+/Properties/serviceDependencies.json
+/Properties/ServiceDependencies/gpxViewer - Web Deploy/profile.arm.json
+/Properties/ServiceDependencies/gpxViewer - Web Deploy/mssql1.arm.json
