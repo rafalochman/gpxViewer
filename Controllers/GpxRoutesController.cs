@@ -11,12 +11,14 @@ using gpxViewer.Configs;
 using gpxViewer.DataAccess;
 using gpxViewer.Helpers;
 using gpxViewer.Models;
+using log4net;
 
 namespace gpxViewer.Controllers
 {
     public class GpxRoutesController : Controller
     {
         private GpxContext db = new GpxContext();
+        private readonly ILog Log = LogManager.GetLogger(typeof(HomeController));
 
         // GET: GpxRoutes
         public ActionResult Index()
@@ -133,6 +135,17 @@ namespace gpxViewer.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             GpxRoute gpxRoute = db.GpxRoutes.Find(id);
+            if (System.IO.File.Exists(gpxRoute.FilePath))
+            {
+                try
+                {
+                    System.IO.File.Delete(gpxRoute.FilePath);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e.Message);
+                }
+            }
             db.GpxRoutes.Remove(gpxRoute);
             db.SaveChanges();
             return RedirectToAction("Index", "GpxRoutes");
