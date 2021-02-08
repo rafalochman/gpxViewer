@@ -97,6 +97,24 @@ namespace gpxViewer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This site uses cookies to provide you a great user experience. By using gpxViewer, you accept our.
+        /// </summary>
+        public static string Cookies {
+            get {
+                return ResourceManager.GetString("Cookies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to use of cookies.
+        /// </summary>
+        public static string CookiesUse {
+            get {
+                return ResourceManager.GetString("CookiesUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sent date.
         /// </summary>
         public static string Date {

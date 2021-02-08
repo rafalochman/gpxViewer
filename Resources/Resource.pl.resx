@@ -129,6 +129,12 @@
   <data name="ChooseMap" xml:space="preserve">
     <value>Wybierz mapę:</value>
   </data>
+  <data name="Cookies" xml:space="preserve">
+    <value>Ta strona używa plików cookies w celu świadczenia Państwu usług na najwyższym poziomie. Korzystając z gpxViewer, akceptują Państwo</value>
+  </data>
+  <data name="CookiesUse" xml:space="preserve">
+    <value>politykę cookies</value>
+  </data>
   <data name="Date" xml:space="preserve">
     <value>Data przesłania</value>
   </data>
