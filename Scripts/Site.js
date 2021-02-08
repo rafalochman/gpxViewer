@@ -156,6 +156,7 @@ function imputDisplay() {
 }
 
 window.addEventListener('load', function () {
+    cookie();
     if (document.getElementById('chooseInput')) {
         imputDisplay();
     }
@@ -205,6 +206,18 @@ function drawChart() {
     }
 }
 
+function cookie() {
+    const cookieContainer = document.querySelector(".cookieContainer");
+    const cookieButton = document.querySelector(".cookieButton");
 
+    if (!localStorage.getItem("cookieBannerDisplayed")) {
+        cookieContainer.style.display = "block";
+    }
+
+    cookieButton.addEventListener("click", () => {
+        cookieContainer.style.display = "none";
+        localStorage.setItem("cookieBannerDisplayed", "true");
+    });
+}
 
 
