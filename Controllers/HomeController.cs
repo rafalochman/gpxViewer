@@ -1,6 +1,5 @@
 ﻿using gpxViewer.Configs;
 using gpxViewer.DataAccess;
-using gpxViewer.Helpers;
 using gpxViewer.Models;
 using log4net;
 using System;

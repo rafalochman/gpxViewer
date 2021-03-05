@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Xml.Serialization;
 
-namespace gpxViewer.Helpers
+namespace gpxViewer.Models
 {
     public class XmlSerializeGpx
     {
-
-        [XmlRoot(ElementName = "start", Namespace = "http://www.topografix.com/GPX/1/1")]
+        [XmlRoot(ElementName = "start")]
         public class Start
         {
             public double ele { get; set; }
@@ -20,7 +17,7 @@ namespace gpxViewer.Helpers
             public double lon { get; set; }
         }
 
-        [XmlRoot(ElementName = "trkpt", Namespace = "http://www.topografix.com/GPX/1/1")]
+        [XmlRoot(ElementName = "trkpt")]
         public class Trkpt
         {
             public double ele { get; set; }
@@ -31,7 +28,7 @@ namespace gpxViewer.Helpers
             public double lon { get; set; }
         }
 
-        [XmlRoot(ElementName = "trkseg", Namespace = "http://www.topografix.com/GPX/1/1")]
+        [XmlRoot(ElementName = "trkseg")]
         public class Trkseg
         {
             [XmlElement("start")]
@@ -40,13 +37,13 @@ namespace gpxViewer.Helpers
             public List<Trkpt> trkpt { get; set; }
         }
 
-        [XmlRoot(ElementName = "trk", Namespace = "http://www.topografix.com/GPX/1/1")]
+        [XmlRoot(ElementName = "trk")]
         public class Trk
         {
             public Trkseg trkseg { get; set; }
         }
 
-        [XmlRoot(ElementName = "gpx", Namespace = "http://www.topografix.com/GPX/1/1")]
+        [XmlRoot(ElementName = "gpx")]
         public class Gpx
         {
             public Trk trk { get; set; }

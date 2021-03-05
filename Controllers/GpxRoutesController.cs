@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.Mvc;
 using gpxViewer.Configs;
 using gpxViewer.DataAccess;
-using gpxViewer.Helpers;
 using gpxViewer.Models;
 using gpxViewer.Services;
 using log4net;
@@ -37,12 +36,8 @@ namespace gpxViewer.Controllers
         // GET: GpxRoutes/Details/5
         public ActionResult Details(int? id)
         {
-            List<SelectListItem> maps = new List<SelectListItem>() {
-                new SelectListItem{Text="Bing Map", Value = "1"},
-                new SelectListItem{Text="Google Map", Value = "2"},
-                new SelectListItem{Text="Open Street Map", Value = "3"}
-            };
-            ViewBag.maps = maps;
+            MapListService mapListService = new MapListService();
+            ViewBag.maps = mapListService.GetMapList();
 
             if (id == null)
             {

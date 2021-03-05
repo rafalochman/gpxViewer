@@ -8,7 +8,6 @@ using System.Xml;
 using System.Xml.Serialization;
 using gpxViewer.Configs;
 using gpxViewer.DataAccess;
-using gpxViewer.Helpers;
 using gpxViewer.Models;
 using log4net;
 using PolylineEncoder.Net.Models;
