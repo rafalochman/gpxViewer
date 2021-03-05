@@ -11,6 +11,7 @@ using gpxViewer.Configs;
 using gpxViewer.DataAccess;
 using gpxViewer.Helpers;
 using gpxViewer.Models;
+using gpxViewer.Services;
 using log4net;
 
 namespace gpxViewer.Controllers
@@ -23,11 +24,11 @@ namespace gpxViewer.Controllers
         // GET: GpxRoutes
         public ActionResult Index()
         {
-            StatisticsOperations statisticsOperations = new StatisticsOperations();
-            ViewBag.Rides = statisticsOperations.Statistics.RidesNumber;
-            ViewBag.Elevation = statisticsOperations.Statistics.Elevation;
-            ViewBag.Distance = statisticsOperations.Statistics.Distance;
-            ViewBag.Time = statisticsOperations.Statistics.Time;
+            var statisticsService = new StatisticsService();
+            ViewBag.Rides = statisticsService.Statistics.RidesNumber;
+            ViewBag.Elevation = statisticsService.Statistics.Elevation;
+            ViewBag.Distance = statisticsService.Statistics.Distance;
+            ViewBag.Time = statisticsService.Statistics.Time;
             var routes = db.GpxRoutes.ToList();
             routes.Reverse();
             return View(routes);

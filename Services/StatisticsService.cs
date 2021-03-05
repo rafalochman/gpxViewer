@@ -1,38 +1,37 @@
-﻿using gpxViewer.DataAccess;
-using gpxViewer.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Web;
-using System.Globalization;
+using gpxViewer.DataAccess;
+using gpxViewer.Models;
 
-namespace gpxViewer.Helpers
+namespace gpxViewer.Services
 {
-    public class StatisticsOperations
+    public class StatisticsService
     {
         public Statistics Statistics { get; set; }
-        
-        public StatisticsOperations()
+
+        public StatisticsService()
         {
             SetStatistics();
         }
 
         private void SetStatistics()
         {
-            NumberFormatInfo numberFormatInfo = new CultureInfo("en-US", false).NumberFormat;
+            var numberFormatInfo = new CultureInfo("en-US", false).NumberFormat;
             numberFormatInfo.NumberDecimalSeparator = ".";
-            GpxContext db = new GpxContext();
+            var db = new GpxContext();
             var routes = db.GpxRoutes.ToList();
 
             double distance = 0;
             double elevation = 0;
-            TimeSpan time = new TimeSpan(0, 0, 0, 0, 0);
+            var time = new TimeSpan(0, 0, 0, 0, 0);
 
-            foreach(GpxRoute route in routes)
+            foreach (var route in routes)
             {
-                distance += Double.Parse(route.Distance, numberFormatInfo);
-                elevation += Double.Parse(route.Elevation, numberFormatInfo);
+                distance += double.Parse(route.Distance, numberFormatInfo);
+                elevation += double.Parse(route.Elevation, numberFormatInfo);
                 time += TimeSpan.Parse(route.Time);
             }
 

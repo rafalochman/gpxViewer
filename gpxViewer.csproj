@@ -143,7 +143,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\GpxOperations.cs" />
-    <Compile Include="Helpers\StatisticsOperations.cs" />
     <Compile Include="Helpers\XmlSerializeGpx.cs" />
     <Compile Include="Models\GpxData.cs" />
     <Compile Include="Models\GpxRoute.cs" />
@@ -161,6 +160,7 @@
     </Compile>
     <Compile Include="Services\DefaultGpxDataService.cs" />
     <Compile Include="Services\MapListService.cs" />
+    <Compile Include="Services\StatisticsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configs\config.js" />
