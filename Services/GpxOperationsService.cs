@@ -1,29 +1,27 @@
-﻿using gpxViewer.Configs;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Xml;
+using System.Xml.Serialization;
+using gpxViewer.Configs;
 using gpxViewer.DataAccess;
+using gpxViewer.Helpers;
 using gpxViewer.Models;
 using log4net;
 using PolylineEncoder.Net.Models;
 using PolylineEncoder.Net.Utility;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Xml;
-using System.Xml.Serialization;
-using gpxViewer.Services;
 
-namespace gpxViewer.Helpers
+namespace gpxViewer.Services
 {
-    public class GpxOperations
+    public class GpxOperationsService
     {
         public GpxData GpxData { get; set; }
-        private readonly ILog Log = LogManager.GetLogger(typeof(GpxOperations));
+        private readonly ILog Log = LogManager.GetLogger(typeof(GpxOperationsService));
 
-        public GpxOperations(string filePath, string fileName)
+        public GpxOperationsService(string filePath, string fileName)
         {
             ReadGpx(filePath, fileName);
         }
@@ -107,12 +105,12 @@ namespace gpxViewer.Helpers
             }
 
             var polylineUtility = new PolylineUtility();
-            var polyLine = polylineUtility.Encode(geoPoints); 
+            var polyLine = polylineUtility.Encode(geoPoints);
             string encodedPolyline = HttpUtility.UrlEncode(polyLine);
             string url = "https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/path-3+FF0000(" + encodedPolyline + ")/auto/500x300?access_token=" + config.MAPBOX_KEY;
             return url;
         }
-   
+
 
         private List<double> CalculateDistances(List<double> lat, List<double> lng)
         {
@@ -120,10 +118,10 @@ namespace gpxViewer.Helpers
             double distance = 0;
             for (int i = 0; i < lat.Count - 1; i++)
             {
-                distance += ArcInMeters(lat[i], lng[i], lat[i + 1], lng[i + 1]) /1000;
+                distance += ArcInMeters(lat[i], lng[i], lat[i + 1], lng[i + 1]) / 1000;
                 if (i % 3 == 0)
                 {
-                    distancesList.Add(Math.Round(distance,2));
+                    distancesList.Add(Math.Round(distance, 2));
                 }
             }
             return distancesList;

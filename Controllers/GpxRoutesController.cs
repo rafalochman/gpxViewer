@@ -51,8 +51,8 @@ namespace gpxViewer.Controllers
             GpxRoute gpxRoute = db.GpxRoutes.Find(id);
             ViewBag.id = gpxRoute.Id;
             ViewBag.key = config.BING_KEY;
-            GpxOperations gpxOperations = new GpxOperations(gpxRoute.FilePath, gpxRoute.Name);
-            GpxData gpxData = gpxOperations.GpxData;
+            GpxOperationsService gpxOperationsService = new GpxOperationsService(gpxRoute.FilePath, gpxRoute.Name);
+            GpxData gpxData = gpxOperationsService.GpxData;
             if (gpxRoute == null)
             {
                 return HttpNotFound();

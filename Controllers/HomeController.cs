@@ -43,8 +43,8 @@ namespace gpxViewer.Controllers
                     string fileName = Path.GetFileName(file.FileName);
                     string filePath = Path.Combine(Server.MapPath("~/UploadedFiles"), fileName);
                     file.SaveAs(filePath);
-                    GpxOperations gpxOperations = new GpxOperations(filePath, fileName);
-                    gpxData = gpxOperations.GpxData;
+                    GpxOperationsService gpxOperationsService = new GpxOperationsService(filePath, fileName);
+                    gpxData = gpxOperationsService.GpxData;
                 }
                 catch (Exception e)
                 {
