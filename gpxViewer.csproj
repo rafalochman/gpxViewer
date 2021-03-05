@@ -142,7 +142,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\DefaultGpxData.cs" />
     <Compile Include="Helpers\GpxOperations.cs" />
     <Compile Include="Helpers\StatisticsOperations.cs" />
     <Compile Include="Helpers\XmlSerializeGpx.cs" />
@@ -160,6 +159,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.pl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\DefaultGpxDataService.cs" />
+    <Compile Include="Services\MapListService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configs\config.js" />

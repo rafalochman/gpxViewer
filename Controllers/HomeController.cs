@@ -11,24 +11,21 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using gpxViewer.Services;
 
 namespace gpxViewer.Controllers
 {
     public class HomeController : Controller
     {
         private GpxContext db = new GpxContext();
-        private DefaultGpxData defaultGpxData = new DefaultGpxData();
+        private MapListService mapListService = new MapListService();
+        private DefaultGpxDataService defaultGpxDataService = new DefaultGpxDataService();
         private readonly ILog Log = LogManager.GetLogger(typeof(HomeController));
         public ActionResult Index()
         {
-            List<SelectListItem> maps = new List<SelectListItem>() {
-                new SelectListItem{Text="Bing Map", Value = "1"},
-                new SelectListItem{Text="Google Map", Value = "2"},
-                new SelectListItem{Text="Open Street Map", Value = "3"}
-            };
-            ViewBag.maps = maps;
+            ViewBag.maps = mapListService.GetMapList();
             ViewBag.key = config.BING_KEY;
-            var gpxData = defaultGpxData.GetDefaultGpxData();
+            var gpxData = defaultGpxDataService.GetDefaultGpxData();
 
             return View(gpxData);
         }
@@ -36,12 +33,7 @@ namespace gpxViewer.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
-            List<SelectListItem> maps = new List<SelectListItem>() {
-                new SelectListItem{Text="Bing Map", Value = "1"},
-                new SelectListItem{Text="Google Map", Value = "2"},
-                new SelectListItem{Text="Open Street Map", Value = "3"}
-            };
-            ViewBag.maps = maps;
+            ViewBag.maps = mapListService.GetMapList();
             ViewBag.key = config.BING_KEY;
             var gpxData = new GpxData();
             if (file != null && file.ContentLength > 0)
@@ -56,13 +48,13 @@ namespace gpxViewer.Controllers
                 }
                 catch (Exception e)
                 {
-                    gpxData = defaultGpxData.GetDefaultGpxData();
+                    gpxData = defaultGpxDataService.GetDefaultGpxData();
                     Log.Error(e.Message);
                 }
             }
             else
             {
-                gpxData = defaultGpxData.GetDefaultGpxData();
+                gpxData = defaultGpxDataService.GetDefaultGpxData();
                 Log.Error("File content length error");
             }
 

@@ -14,6 +14,7 @@ using System.Text;
 using System.Web;
 using System.Xml;
 using System.Xml.Serialization;
+using gpxViewer.Services;
 
 namespace gpxViewer.Helpers
 {
@@ -88,8 +89,8 @@ namespace gpxViewer.Helpers
             }
             catch (Exception e)
             {
-                var defaultGpxData = new DefaultGpxData();
-                GpxData = defaultGpxData.GetDefaultGpxData();
+                var defaultGpxDataService = new DefaultGpxDataService();
+                GpxData = defaultGpxDataService.GetDefaultGpxData();
                 Log.Error(e.Message);
             }
         }

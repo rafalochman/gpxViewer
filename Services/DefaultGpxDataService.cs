@@ -1,12 +1,12 @@
-﻿using gpxViewer.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using gpxViewer.Models;
 
-namespace gpxViewer.Helpers
+namespace gpxViewer.Services
 {
-    public class DefaultGpxData
+    public class DefaultGpxDataService
     {
         public GpxData GetDefaultGpxData()
         {
