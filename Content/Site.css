@@ -107,7 +107,7 @@ th {
 
 #chartDiv {
     width: 100%;
-    min-width: 750px;
+    min-width: 480px;
     height: 180px;
     display: none;
 }
@@ -115,6 +115,8 @@ th {
 #elevationChart {
     width: 100%;
     height: 180px;
+    min-height:180px;
+    max-height:180px;
 }
 
 .activityContainer {
