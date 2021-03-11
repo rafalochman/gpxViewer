@@ -129,6 +129,9 @@
   <data name="ChooseMap" xml:space="preserve">
     <value>Choose map:</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
   <data name="Cookies" xml:space="preserve">
     <value>This site uses cookies to provide you a great user experience. By using gpxViewer, you accept our</value>
   </data>
@@ -159,8 +162,23 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="IsAccount" xml:space="preserve">
+    <value>If you have an account already, please</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="NotAccount" xml:space="preserve">
+    <value>If you don't have an account yet, please</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
   </data>
   <data name="Rides" xml:space="preserve">
     <value>Rides</value>
@@ -182,5 +200,8 @@
   </data>
   <data name="Time" xml:space="preserve">
     <value>Time</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
 </root>
