@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -7,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using gpxViewer.DataAccess;
 
 namespace gpxViewer
 {
@@ -20,6 +22,8 @@ namespace gpxViewer
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             log4net.Config.XmlConfigurator.Configure();
+
+            Database.SetInitializer(new GpxInitializer());
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

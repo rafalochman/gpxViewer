@@ -14,5 +14,6 @@ namespace gpxViewer.DataAccess
 
         }
         public DbSet<GpxRoute> GpxRoutes { get; set; }
+        public DbSet<UserAccount> UserAccounts { get; set; }
     }
 }

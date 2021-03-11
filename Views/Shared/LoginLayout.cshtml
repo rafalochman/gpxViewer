@@ -17,16 +17,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("gpxViewer", "Main", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <span class="navbar-brand"> gpxViewer</span>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(@gpxViewer.Resources.Resource.Home, "Main", "Home")</li>
-                    <li>@Html.ActionLink(@gpxViewer.Resources.Resource.Routes, "Index", "GpxRoutes")</li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink(Session["Username"].ToString(), "", "")</li>
-                    <li>@Html.ActionLink("Logout", "LogOut", "Home")</li>
+                    <li>@Html.ActionLink("Register", "Register", "Home")</li>
+                    <li>@Html.ActionLink("Login", "Index", "Home")</li>
                 </ul>
             </div>
         </div>
@@ -55,10 +51,6 @@
 
     </div>
 
-    @if (Session["UserId"] == null)
-    {
-        Response.Redirect("~Home/Index");
-    }
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
