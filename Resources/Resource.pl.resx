@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlreadyExists" xml:space="preserve">
+    <value>już istnieje</value>
+  </data>
   <data name="AreYouSure" xml:space="preserve">
     <value>Jesteś pewny, że chcesz usunąć?</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="Details" xml:space="preserve">
     <value>Szczegóły</value>
+  </data>
+  <data name="DifferentPasswords" xml:space="preserve">
+    <value>Hasła różnią się</value>
   </data>
   <data name="Distance" xml:space="preserve">
     <value>Dystans</value>
@@ -180,6 +186,15 @@
   <data name="Register" xml:space="preserve">
     <value>Zarejestruj się</value>
   </data>
+  <data name="RequiredEmail" xml:space="preserve">
+    <value>Email jest wymagany</value>
+  </data>
+  <data name="RequiredPassword" xml:space="preserve">
+    <value>Hasło jest wymagane</value>
+  </data>
+  <data name="RequiredUsername" xml:space="preserve">
+    <value>Nazwa użytkownika jest wymagana</value>
+  </data>
   <data name="Rides" xml:space="preserve">
     <value>Trasy</value>
   </data>
@@ -198,10 +213,16 @@
   <data name="Statistics" xml:space="preserve">
     <value>Statystyki</value>
   </data>
+  <data name="SuccessfullyRegistered" xml:space="preserve">
+    <value>rejestracja przebiegła pomyślnie</value>
+  </data>
   <data name="Time" xml:space="preserve">
     <value>Czas</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Nazwa użytkownika</value>
+  </data>
+  <data name="WrongData" xml:space="preserve">
+    <value>Nazwa użytkownika lub Hasło nie są poprawne</value>
   </data>
 </root>

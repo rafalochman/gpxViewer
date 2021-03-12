@@ -61,6 +61,15 @@ namespace gpxViewer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to already exists.
+        /// </summary>
+        public static string AlreadyExists {
+            get {
+                return ResourceManager.GetString("AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete this?.
         /// </summary>
         public static string AreYouSure {
@@ -147,6 +156,15 @@ namespace gpxViewer.Resources {
         public static string Details {
             get {
                 return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords are different.
+        /// </summary>
+        public static string DifferentPasswords {
+            get {
+                return ResourceManager.GetString("DifferentPasswords", resourceCulture);
             }
         }
         
@@ -250,6 +268,33 @@ namespace gpxViewer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email is required.
+        /// </summary>
+        public static string RequiredEmail {
+            get {
+                return ResourceManager.GetString("RequiredEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is required.
+        /// </summary>
+        public static string RequiredPassword {
+            get {
+                return ResourceManager.GetString("RequiredPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username is required.
+        /// </summary>
+        public static string RequiredUsername {
+            get {
+                return ResourceManager.GetString("RequiredUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rides.
         /// </summary>
         public static string Rides {
@@ -304,6 +349,15 @@ namespace gpxViewer.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to successfully registered.
+        /// </summary>
+        public static string SuccessfullyRegistered {
+            get {
+                return ResourceManager.GetString("SuccessfullyRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time.
         /// </summary>
         public static string Time {
@@ -318,6 +372,15 @@ namespace gpxViewer.Resources {
         public static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username or Password is wrong.
+        /// </summary>
+        public static string WrongData {
+            get {
+                return ResourceManager.GetString("WrongData", resourceCulture);
             }
         }
     }

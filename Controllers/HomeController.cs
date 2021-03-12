@@ -85,14 +85,14 @@ namespace gpxViewer.Controllers
                 {
                     if (db.UserAccounts.Any(user => user.Username == account.Username))
                     {
-                        ViewBag.Message = "Username" + account.Username + " already exists";
+                        ViewBag.Message = Resources.Resource.Username + " " + account.Username + " " + Resources.Resource.AlreadyExists;
                         return View();
                     }
                     db.UserAccounts.Add(account);
                     db.SaveChanges();
                 }
                 ModelState.Clear();
-                ViewBag.Message = account.Username + "successfully registered";
+                ViewBag.Message = account.Username + " " + Resources.Resource.SuccessfullyRegistered;
             }
 
             return View();
@@ -119,7 +119,7 @@ namespace gpxViewer.Controllers
                         return RedirectToAction("Main", "Home");
                     }
 
-                    ModelState.AddModelError("", "Username or Password is wrong");
+                    ModelState.AddModelError("", Resources.Resource.WrongData);
                 }
             }
             return View();
