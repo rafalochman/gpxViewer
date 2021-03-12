@@ -28,7 +28,7 @@ namespace gpxViewer.Services
             double elevation = 0;
             var time = new TimeSpan(0, 0, 0, 0, 0);
 
-            foreach (var route in routes)
+            foreach (var route in routes.Where(route => route.UserId == int.Parse(HttpContext.Current.Session["UserId"].ToString())))
             {
                 distance += double.Parse(route.Distance, numberFormatInfo);
                 elevation += double.Parse(route.Elevation, numberFormatInfo);
@@ -37,7 +37,7 @@ namespace gpxViewer.Services
 
             Statistics = new Statistics
             {
-                RidesNumber = routes.Count,
+                RidesNumber = routes.Count(route => route.UserId == int.Parse(HttpContext.Current.Session["UserId"].ToString())),
                 Distance = distance,
                 Elevation = elevation,
                 Time = time

@@ -8,6 +8,7 @@ namespace gpxViewer.Models
     public class GpxRoute
     {
         public int Id { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Distance { get; set; }
         public string Time { get; set; }

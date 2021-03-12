@@ -28,7 +28,7 @@ namespace gpxViewer.Controllers
             ViewBag.Elevation = statisticsService.Statistics.Elevation;
             ViewBag.Distance = statisticsService.Statistics.Distance;
             ViewBag.Time = statisticsService.Statistics.Time;
-            var routes = db.GpxRoutes.ToList();
+            var routes = db.GpxRoutes.ToList().Where(route => route.UserId == int.Parse(System.Web.HttpContext.Current.Session["UserId"].ToString()));
             routes.Reverse();
             return View(routes);
         }
@@ -76,7 +76,7 @@ namespace gpxViewer.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Distance,Time,Elevation,SentDate,FilePath,MapUrl")] GpxRoute gpxRoute)
+        public ActionResult Edit([Bind(Include = "Id,UserId,Name,Distance,Time,Elevation,SentDate,FilePath,MapUrl")] GpxRoute gpxRoute)
         {
             if (ModelState.IsValid)
             {

@@ -71,9 +71,12 @@ namespace gpxViewer.Services
                     Elevation = GpxData.Elevation,
                     SentDate = GpxData.SentDate,
                     FilePath = filePath,
-                    MapUrl = PrepareUrl(lat, lng)
+                    MapUrl = PrepareUrl(lat, lng),
+                    UserId = int.Parse(HttpContext.Current.Session["UserId"].ToString())
                 };
+                var userId = int.Parse(HttpContext.Current.Session["UserId"].ToString());
                 if (!context.GpxRoutes.Any(r => r.Name == fileName) ||
+                    !context.GpxRoutes.Any(r => r.UserId == userId) ||
                     !context.GpxRoutes.Any(r => r.Elevation == GpxData.Elevation) ||
                     !context.GpxRoutes.Any(r => r.Time == GpxData.Time) ||
                     !context.GpxRoutes.Any(r => r.Distance == GpxData.Distance))
