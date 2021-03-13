@@ -81,6 +81,8 @@ namespace gpxViewer.Controllers
         {
             if (ModelState.IsValid)
             {
+                account.Password = BCrypt.Net.BCrypt.HashPassword(account.Password);
+                account.ConfirmPassword = account.Password;
                 using (GpxContext db = new GpxContext())
                 {
                     if (db.UserAccounts.Any(user => user.Username == account.Username))
@@ -110,9 +112,8 @@ namespace gpxViewer.Controllers
             {
                 using (GpxContext db = new GpxContext())
                 {
-                    var user = db.UserAccounts.SingleOrDefault(u =>
-                        u.Username == login.Username && u.Password == login.Password);
-                    if (user != null)
+                    var user = db.UserAccounts.SingleOrDefault(u => u.Username == login.Username);
+                    if (user != null && BCrypt.Net.BCrypt.Verify(login.Password, user.Password))
                     {
                         Session["UserId"] = user.UserId.ToString();
                         Session["Username"] = user.Username;
