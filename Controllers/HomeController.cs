@@ -36,6 +36,11 @@ namespace gpxViewer.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
+            var folderPath = Server.MapPath("~/UploadedFiles/" + Session["UserId"]);
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
             ViewBag.maps = mapListService.GetMapList();
             ViewBag.key = config.BING_KEY;
             var gpxData = new GpxData();
@@ -43,8 +48,8 @@ namespace gpxViewer.Controllers
             {
                 try
                 {
-                    string fileName = Path.GetFileName(file.FileName);
-                    string filePath = Path.Combine(Server.MapPath("~/UploadedFiles"), fileName);
+                    var fileName = Path.GetFileName(file.FileName);
+                    var filePath = Path.Combine(folderPath, fileName);
                     file.SaveAs(filePath);
                     GpxOperationsService gpxOperationsService = new GpxOperationsService(filePath, fileName);
                     gpxData = gpxOperationsService.GpxData;

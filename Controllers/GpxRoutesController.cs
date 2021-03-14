@@ -28,7 +28,8 @@ namespace gpxViewer.Controllers
             ViewBag.Elevation = statisticsService.Statistics.Elevation;
             ViewBag.Distance = statisticsService.Statistics.Distance;
             ViewBag.Time = statisticsService.Statistics.Time;
-            var routes = db.GpxRoutes.ToList().Where(route => route.UserId == int.Parse(System.Web.HttpContext.Current.Session["UserId"].ToString()));
+            var userId = int.Parse(System.Web.HttpContext.Current.Session["UserId"].ToString());
+            var routes = db.GpxRoutes.Where(route => route.UserId == userId).ToList();
             routes.Reverse();
             return View(routes);
         }

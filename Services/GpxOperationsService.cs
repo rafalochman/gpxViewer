@@ -62,6 +62,7 @@ namespace gpxViewer.Services
                     SentDate = DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("pl"))
                 };
 
+                var userId = int.Parse(HttpContext.Current.Session["UserId"].ToString());
                 var context = new GpxContext();
                 var route = new GpxRoute
                 {
@@ -72,14 +73,14 @@ namespace gpxViewer.Services
                     SentDate = GpxData.SentDate,
                     FilePath = filePath,
                     MapUrl = PrepareUrl(lat, lng),
-                    UserId = int.Parse(HttpContext.Current.Session["UserId"].ToString())
+                    UserId = userId
                 };
-                var userId = int.Parse(HttpContext.Current.Session["UserId"].ToString());
-                if (!context.GpxRoutes.Any(r => r.Name == fileName) ||
-                    !context.GpxRoutes.Any(r => r.UserId == userId) ||
-                    !context.GpxRoutes.Any(r => r.Elevation == GpxData.Elevation) ||
-                    !context.GpxRoutes.Any(r => r.Time == GpxData.Time) ||
-                    !context.GpxRoutes.Any(r => r.Distance == GpxData.Distance))
+
+                if (!context.GpxRoutes.Any(r => r.Name == fileName && 
+                                                r.UserId == userId && 
+                                                r.Elevation == GpxData.Elevation && 
+                                                r.Time == GpxData.Time && 
+                                                r.Distance == GpxData.Distance))
                 {
                     context.GpxRoutes.Add(route);
                 }
