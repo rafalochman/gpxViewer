@@ -137,6 +137,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configs\config.cs" />
     <Compile Include="Controllers\GpxRoutesController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="DataAccess\GpxContext.cs" />
@@ -199,20 +200,19 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\GpxRoutes\Delete.cshtml" />
     <Content Include="Views\GpxRoutes\Details.cshtml" />
     <Content Include="Views\GpxRoutes\Edit.cshtml" />
     <Content Include="Views\GpxRoutes\Index.cshtml" />
-    <Content Include="Views\Home\Main.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\LoginLayout.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Logs\" />
     <Folder Include="UploadedFiles\" />
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Language\" />
   </ItemGroup>
   <ItemGroup>

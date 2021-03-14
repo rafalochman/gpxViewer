@@ -20,7 +20,8 @@ namespace gpxViewer.Controllers
         private MapListService mapListService = new MapListService();
         private DefaultGpxDataService defaultGpxDataService = new DefaultGpxDataService();
         private readonly ILog Log = LogManager.GetLogger(typeof(HomeController));
-        public ActionResult Main()
+
+        public ActionResult Index()
         {
             if (Session["UserId"] != null)
             {
@@ -29,11 +30,11 @@ namespace gpxViewer.Controllers
                 var gpxData = defaultGpxDataService.GetDefaultGpxData();
                 return View(gpxData);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Login","Account");
         }
 
         [HttpPost]
-        public ActionResult Main(HttpPostedFileBase file)
+        public ActionResult Index(HttpPostedFileBase file)
         {
             ViewBag.maps = mapListService.GetMapList();
             ViewBag.key = config.BING_KEY;
@@ -69,67 +70,6 @@ namespace gpxViewer.Controllers
                 TempData["Message"] = Resources.Resource.Error;
             }
             return View(gpxData);
-        }
-
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Register(UserAccount account)
-        {
-            if (ModelState.IsValid)
-            {
-                account.Password = BCrypt.Net.BCrypt.HashPassword(account.Password);
-                account.ConfirmPassword = account.Password;
-                using (GpxContext db = new GpxContext())
-                {
-                    if (db.UserAccounts.Any(user => user.Username == account.Username))
-                    {
-                        ViewBag.Message = Resources.Resource.Username + " " + account.Username + " " + Resources.Resource.AlreadyExists;
-                        return View();
-                    }
-                    db.UserAccounts.Add(account);
-                    db.SaveChanges();
-                }
-                ModelState.Clear();
-                ViewBag.Message = account.Username + " " + Resources.Resource.SuccessfullyRegistered;
-            }
-
-            return View();
-        }
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Index(Login login)
-        {
-            if (ModelState.IsValid)
-            {
-                using (GpxContext db = new GpxContext())
-                {
-                    var user = db.UserAccounts.SingleOrDefault(u => u.Username == login.Username);
-                    if (user != null && BCrypt.Net.BCrypt.Verify(login.Password, user.Password))
-                    {
-                        Session["UserId"] = user.UserId.ToString();
-                        Session["Username"] = user.Username;
-                        return RedirectToAction("Main", "Home");
-                    }
-
-                    ModelState.AddModelError("", Resources.Resource.WrongData);
-                }
-            }
-            return View();
-        }
-
-        public ActionResult LogOut()
-        {
-            Session.Abandon();
-            return RedirectToAction("Index", "Home");
         }
     }
 
