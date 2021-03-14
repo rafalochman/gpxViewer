@@ -1,6 +1,5 @@
 # GPX Viewer
-GPX Viewer is a web aplication to show gpx route on map, generate elevation chart and calculate route distance, time, elevation. Routes and calculated data are saved to database. 
-Application uses Bing Maps, Google Maps and OpenStreetMap.
+GPX Viewer is a web aplication to show gpx route on map, generate elevation chart and calculate route distance, time, elevation. Routes and calculated data are saved to database, also user login and registration is implemented.  Application uses Bing Maps, Google Maps and OpenStreetMap.
 
 ## Technologies
 * C#
