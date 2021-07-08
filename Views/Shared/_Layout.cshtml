@@ -26,7 +26,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>@Html.ActionLink(Session["Username"].ToString(), "", "")</li>
-                    <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
+                    <li>@Html.ActionLink(@gpxViewer.Resources.Resource.Logout, "LogOut", "Account")</li>
                 </ul>
             </div>
         </div>
