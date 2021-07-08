@@ -51,7 +51,7 @@
 
         <p>@Html.ActionLink(@gpxViewer.Resources.Resource.Delete, "Delete", "GpxRoutes", new { id = ViewBag.id }, new { @class = "btn btn-default" })</p>
 
-        <p>@Html.ActionLink(@gpxViewer.Resources.Resource.Back, null, null, null, new { href = Request.UrlReferrer })</p>
+        <p>@Html.ActionLink(@gpxViewer.Resources.Resource.Back, "Index", "GpxRoutes")</p>
 
     </div>
 
