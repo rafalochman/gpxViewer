@@ -165,6 +165,9 @@
   <data name="Error" xml:space="preserve">
     <value>Błąd przesyłania pliku</value>
   </data>
+  <data name="Find" xml:space="preserve">
+    <value>Znajdź trasę</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Strona Główna</value>
   </data>
@@ -206,6 +209,9 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Zapisz</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Szukaj</value>
   </data>
   <data name="Send" xml:space="preserve">
     <value>Prześlij</value>

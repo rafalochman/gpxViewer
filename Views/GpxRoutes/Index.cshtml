@@ -19,6 +19,14 @@
             <p class="bold">@gpxViewer.Resources.Resource.Time: <div class="inline">@((int)ViewBag.time.TotalHours)h @(ViewBag.time.Minutes)m</div></p>
             <p class="bold">@gpxViewer.Resources.Resource.Elevation: <div class="inline">@ViewBag.Elevation m</div></p>
         </div>
+
+        <br />
+        <h4>@gpxViewer.Resources.Resource.Find:</h4>
+        @using (Html.BeginForm("Index", "GpxRoutes", FormMethod.Get))
+        {
+            <input class="form-control" name="search">
+            <input class="btn btn-primary searchButton" type="submit" value="@gpxViewer.Resources.Resource.Search" />
+        }
     </div>
 
     <div class="col-lg-8">

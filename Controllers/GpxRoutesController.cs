@@ -21,7 +21,7 @@ namespace gpxViewer.Controllers
         private readonly ILog Log = LogManager.GetLogger(typeof(HomeController));
 
         // GET: GpxRoutes
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
             var statisticsService = new StatisticsService();
             ViewBag.Rides = statisticsService.Statistics.RidesNumber;
@@ -29,7 +29,7 @@ namespace gpxViewer.Controllers
             ViewBag.Distance = statisticsService.Statistics.Distance;
             ViewBag.Time = statisticsService.Statistics.Time;
             var userId = int.Parse(System.Web.HttpContext.Current.Session["UserId"].ToString());
-            var routes = db.GpxRoutes.Where(route => route.UserId == userId).ToList();
+            var routes = db.GpxRoutes.Where(route => route.UserId == userId && (route.Name.Contains(search) || search == null)).ToList();
             routes.Reverse();
             return View(routes);
         }
