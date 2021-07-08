@@ -34,17 +34,17 @@
         {
             <div class="activityContainer">
                 <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
-                <div><img id="staticMap" src="@Html.DisplayFor(modelItem => item.MapUrl)" alt="Mapbox static map" /></div>
+                <div><img class="staticMap" src="@Html.DisplayFor(modelItem => item.MapUrl)" alt="Mapbox static map" /></div>
                 <div id="activityStats">
                     <div class="activityRow">
                         <div class="activityColumn">
-                            <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inline">@Html.DisplayFor(modelItem => item.Distance) km</div> </p>
+                            <p class="bold"> @gpxViewer.Resources.Resource.Distance: <div class="inlineStat">@Html.DisplayFor(modelItem => item.Distance) km</div> </p>
                         </div>
                         <div class="activityColumn">
-                            <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inline">@Html.DisplayFor(modelItem => item.Time)</div></p>
+                            <p class="bold"> @gpxViewer.Resources.Resource.Time: <div class="inlineStat">@Html.DisplayFor(modelItem => item.Time)</div></p>
                         </div>
                         <div class="activityColumn">
-                            <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inline">@Html.DisplayFor(modelItem => item.Elevation) m</div></p>
+                            <p class="bold"> @gpxViewer.Resources.Resource.Elevation: <div class="inlineStat">@Html.DisplayFor(modelItem => item.Elevation) m</div></p>
                         </div>
                     </div>
                 </div>

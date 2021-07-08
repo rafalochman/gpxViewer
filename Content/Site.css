@@ -42,6 +42,11 @@ th {
     display: inline;
 }
 
+.inlineStat {
+    all: unset;
+    display: inline;
+}
+
 #uploadFileDiv {
     margin-top: 20px;
 }
@@ -125,7 +130,7 @@ th {
     border-radius: 15px;
     padding: 20px;
     margin-bottom: 20px;
-    min-width: 540px;
+    min-width: 440px;
     background-color: rgba(0, 0, 0, 0.03);
 }
 
@@ -162,4 +167,19 @@ th {
 
 .searchButton {
     margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .staticMap {
+        width: 400px;
+    }
+
+    .inlineStat {
+        display: block;
+    }
+
+    #activityStats {
+        width: 400px;
+    }
 }
